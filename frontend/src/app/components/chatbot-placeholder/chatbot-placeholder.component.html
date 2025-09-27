@@ -1,0 +1,143 @@
+<div class="chatbot-container">
+  <div class="chatbot-header">
+    <h1>AI Chatbot Assistant</h1>
+    <p>Your intelligent admission helper is coming soon!</p>
+  </div>
+
+  <div class="status-section">
+    <mat-card class="status-card">
+      <mat-card-content>
+        <div class="status-content">
+          <mat-icon class="status-icon">smart_toy</mat-icon>
+          <div class="status-info">
+            <h3>Chatbot Status</h3>
+            <p class="status-text">{{ chatbotStatus }}</p>
+            <button mat-raised-button color="primary" (click)="checkChatbotStatus()" 
+                    [disabled]="isCheckingStatus">
+              <mat-spinner *ngIf="isCheckingStatus" diameter="20"></mat-spinner>
+              <mat-icon *ngIf="!isCheckingStatus">refresh</mat-icon>
+              <span *ngIf="!isCheckingStatus">Check Status</span>
+              <span *ngIf="isCheckingStatus">Checking...</span>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="features-section">
+    <h2>Planned Chatbot Features</h2>
+    <div class="features-grid">
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>quiz</mat-icon>
+          <mat-card-title>Admission Queries</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Answer questions about admission requirements, deadlines, and procedures.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>school</mat-icon>
+          <mat-card-title>Course Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Provide detailed information about available courses and programs.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>support_agent</mat-icon>
+          <mat-card-title>24/7 Support</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Round-the-clock assistance for prospective students and applicants.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>psychology</mat-icon>
+          <mat-card-title>AI-Powered</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Advanced AI technology for natural language understanding and responses.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="implementation-section">
+    <mat-card class="implementation-card">
+      <mat-card-content>
+        <h2>Implementation Roadmap</h2>
+        <div class="roadmap-steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Backend API Integration</h4>
+              <p>Connect with AI service providers (OpenAI, Google AI, etc.)</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Chat Interface</h4>
+              <p>Build real-time chat interface with message history</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Knowledge Base</h4>
+              <p>Train the chatbot with college-specific information</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Testing & Deployment</h4>
+              <p>Comprehensive testing and production deployment</p>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="demo-section">
+    <mat-card class="demo-card">
+      <mat-card-content>
+        <h2>Try the Demo</h2>
+        <p>Experience a preview of what the chatbot will offer:</p>
+        <div class="demo-chat">
+          <div class="chat-message bot-message">
+            <mat-icon class="message-icon">smart_toy</mat-icon>
+            <div class="message-content">
+              <p>Hello! I'm your AI admission assistant. How can I help you today?</p>
+            </div>
+          </div>
+          <div class="chat-message user-message">
+            <div class="message-content">
+              <p>What are the admission requirements?</p>
+            </div>
+            <mat-icon class="message-icon">person</mat-icon>
+          </div>
+          <div class="chat-message bot-message">
+            <mat-icon class="message-icon">smart_toy</mat-icon>
+            <div class="message-content">
+              <p>Our admission requirements include: High school diploma or equivalent, minimum GPA of 2.5, completed application form, and application fee. Would you like more details about any specific requirement?</p>
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button color="accent" (click)="onChatbotClick()" class="demo-button">
+          <mat-icon>chat</mat-icon>
+          Start Chat Demo
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

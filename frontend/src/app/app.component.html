@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="logo">
+      <mat-icon>school</mat-icon>
+      College Admission Portal
+    </span>
+    <span class="spacer"></span>
+    <nav>
+      <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="/apply" routerLinkActive="active">Apply Now</a>
+      <a mat-button routerLink="/admin" routerLinkActive="active">Admin</a>
+      <a mat-button routerLink="/chatbot" routerLinkActive="active">Chatbot</a>
+      <a mat-button routerLink="/veridia" routerLinkActive="active">Veridia University</a>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2024 College Admission Portal. All rights reserved.</p>
+    <p>Powered by MEAN Stack</p>
+  </div>
+</footer>

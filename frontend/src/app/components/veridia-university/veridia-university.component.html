@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Veridia University</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-content-light dark:text-content-dark">
+<div class="flex flex-col min-h-screen">
+  <!-- Header -->
+  <header class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-content-dark/10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="text-primary">
+            <svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_6_535)">
+                <path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_6_535">
+                  <rect fill="white" height="48" width="48"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h2 class="text-xl font-bold">Veridia University</h2>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer" 
+             (click)="scrollToSection('about')">About</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer" 
+             (click)="scrollToSection('alumni')">Alumni</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Admissions</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Campus Life</a>
+          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Contact</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center gap-2">
+          <!-- Dark Mode Toggle -->
+          <button (click)="toggleDarkMode()" 
+                  class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
+            <span class="material-symbols-outlined text-lg">
+              {{ isDarkMode ? 'light_mode' : 'dark_mode' }}
+            </span>
+          </button>
+          
+          <a class="px-4 py-2 text-sm font-bold rounded-lg bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="#">Login</a>
+          <a class="px-4 py-2 text-sm font-bold rounded-lg bg-primary text-white hover:opacity-90 transition-opacity" href="#">Apply Now</a>
+          
+          <!-- Mobile Menu Button -->
+          <button (click)="toggleMobileMenu()" 
+                  class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'">
+            <span class="material-symbols-outlined text-lg">
+              {{ isMobileMenuOpen ? 'close' : 'menu' }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="md:hidden" [class.hidden]="!isMobileMenuOpen">
+        <nav class="py-4 border-t border-gray-200 dark:border-content-dark/10">
+          <div class="flex flex-col space-y-2">
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer py-2" 
+               (click)="scrollToSection('about')">About</a>
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer py-2" 
+               (click)="scrollToSection('alumni')">Alumni</a>
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Admissions</a>
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Campus Life</a>
+            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center" id="home">
+      <div class="absolute inset-0">
+        <img alt="Veridia University Campus" 
+             class="w-full h-full object-cover" 
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAacBI-sHgjoh9dffWL4Yd3efmZrr99aUNBhwOYAe9tMNPFAfNAkwQJeoJTbMQopChxCbcDHE6Byl4nkDW_NFR6LZVIsbMu2kX9WT9GgPwUeEcsnzwwu9zRQHunFgB2QzTSs5fFkTS6P447Nv6WP_c5Xy_MGUXJVp3LvVArINTd5VIToapcnS4ptdB6tXuZ6QOTbJEQ6l7x_kNpwm4ihS-BmD4fLkGtVz_8uVblFfShkZtzFvehdJkD32jE2GmDeX4BQo-w9XLRGgo2"/>
+        <div class="absolute inset-0 bg-black/50"></div>
+      </div>
+      <div class="relative z-10 text-center text-white p-4">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-tight">Your future begins at Veridia.</h1>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 md:py-24 bg-white dark:bg-background-dark" id="about">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold tracking-tight">About Veridia University</h2>
+          <p class="mt-2 text-content-light/80 dark:text-content-dark/80 max-w-3xl mx-auto">
+            Founded on the principles of innovation and excellence, Veridia University has been a beacon of higher learning for over a century. 
+            We are dedicated to fostering a diverse and inclusive environment where students can thrive.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl border border-content-light/10 dark:border-content-dark/10">
+            <h3 class="text-xl font-bold text-primary">Our Mission</h3>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              To educate the leaders of tomorrow and to nurture a spirit of inquiry, creativity, and lifelong learning.
+            </p>
+          </div>
+          <div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl border border-content-light/10 dark:border-content-dark/10">
+            <h3 class="text-xl font-bold text-primary">Our Vision</h3>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              To be a world-class institution recognized for its academic excellence, research, and contribution to society.
+            </p>
+          </div>
+          <div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl border border-content-light/10 dark:border-content-dark/10 md:col-span-2 lg:col-span-1">
+            <h3 class="text-xl font-bold text-primary">Our Values</h3>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              Integrity, Diversity, Collaboration, and Innovation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alumni Section -->
+    <section class="py-16 md:py-24 bg-background-light dark:bg-background-dark/50" id="alumni">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold tracking-tight">Our Alumni</h2>
+          <p class="mt-2 text-content-light/80 dark:text-content-dark/80 max-w-3xl mx-auto">
+            Veridia graduates are changing the world. Hear their stories and see the impact they are making in their fields.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white dark:bg-background-dark p-6 rounded-xl shadow-md">
+            <img alt="Dr. Evelyn Reed - Alumni Portrait" 
+                 class="w-full h-48 object-cover rounded-lg mb-4" 
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaDuMmT5pgbW1FLjtkVKpl-ZxWowtLX9HzZEPJWfHU8rINtODKQqMYZJP3vGENLgxwORuC7X8_tI4AuQNDAkhPnRGd906JGjDcP8bG3yD1aRsWo_-lPLeh9X0QRvgpH3sqBgbxMv6zOH-gbBqXguIMPUvxdMufjxpYi9ssF17Yb_6l8ZkHaUIbiUftd4X98kR_SarZXucLb0J4aKErSnRYQpkGj__iEl9ZmSH14_10bL0LR2XLBp4arnmrm3vTK_UDsnwCTzeypJk3"/>
+            <h3 class="text-lg font-bold">Dr. Evelyn Reed</h3>
+            <p class="text-sm text-primary">Class of '05 - Lead Researcher, BioTech Innovations</p>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              "Veridia gave me the tools and the confidence to pursue my passion for science. The faculty's support was instrumental in my success."
+            </p>
+          </div>
+          <div class="bg-white dark:bg-background-dark p-6 rounded-xl shadow-md">
+            <img alt="Marcus Chen - Alumni Portrait" 
+                 class="w-full h-48 object-cover rounded-lg mb-4" 
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw6vOJa8J_EKyw6omGvdGLN5YZOOFK-NevtnP4Du8vPanG-Y1VmfrIlaOBd9_aj7r3ZWwIfRdgEJbb3jPEHRoRTDbLlxrJjU3zKFGxNg4fWaEmD2aRr0S2HmVI00kO88aa9VXfAs1gMhGYJYfFCeP5OZiSFo094x3nNR6zEUwZWQU-TBGhN77HTzw6gIK2aaZ28E9xOICsXHBVU6Rc0YcuTWp626luAcgetF2_xPMyKC4IzaJ5OCsTeEDsm9O6_o2P9EhZ9LRGeljO"/>
+            <h3 class="text-lg font-bold">Marcus Chen</h3>
+            <p class="text-sm text-primary">Class of '12 - Founder & CEO, TechStart Solutions</p>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              "The entrepreneurial spirit at Veridia is contagious. I met my co-founders here and we built our company from the ground up."
+            </p>
+          </div>
+          <div class="bg-white dark:bg-background-dark p-6 rounded-xl shadow-md">
+            <img alt="Priya Sharma - Alumni Portrait" 
+                 class="w-full h-48 object-cover rounded-lg mb-4" 
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcOUzC0pCQV7hGxsN4-tmTE6feieptC26wTanJw-CaGlmWtrXDBN7_IA4ZdSzxp-5nIRqSc7KqnBJbfL7LBczz1j6TD08brNP7pkhG8w9GobAHauGcT_Ls4qlQBMTMB_eQTodlJFVXN9_tjV9c1tj2EEVCdJafEOnh6oEqi8CuLwp5gzQBJpHY1uHFxhd_YrKdydzUJsYsUby5Fr9dsztoHAneXGjtSvjKl_oJ9elntt3qDZ2UofXUMvdMa0fwcDbKKKq-yKOIWiAo"/>
+            <h3 class="text-lg font-bold">Priya Sharma</h3>
+            <p class="text-sm text-primary">Class of '18 - Award-Winning Journalist</p>
+            <p class="mt-2 text-sm text-content-light/80 dark:text-content-dark/80">
+              "My journalism professors at Veridia taught me to seek the truth and to tell stories that matter. It's a lesson I carry with me every day."
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-background-light dark:bg-background-dark border-t border-content-light/10 dark:border-content-dark/10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
+          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Terms of Service</a>
+          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Contact Us</a>
+        </div>
+        <p class="text-sm text-content-light/60 dark:text-content-dark/60">© 2024 Veridia University. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Chatbot Button -->
+<button (click)="toggleChatbot()" 
+        class="fixed bottom-6 right-6 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark transition-all duration-300 ease-in-out z-40"
+        [attr.aria-label]="isChatbotOpen ? 'Close chatbot' : 'Open chatbot'">
+  <span class="material-symbols-outlined">{{ isChatbotOpen ? 'close' : 'chat' }}</span>
+</button>
+
+<!-- Chatbot Modal -->
+<div *ngIf="isChatbotOpen" 
+     class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+     (click)="closeChatbot()">
+  <div class="bg-white dark:bg-background-dark rounded-xl shadow-2xl w-full max-w-md max-h-[80vh] flex flex-col"
+       (click)="$event.stopPropagation()">
+    <!-- Chatbot Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-content-dark/10">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+          <span class="material-symbols-outlined text-white text-sm">smart_toy</span>
+        </div>
+        <div>
+          <h3 class="font-semibold text-sm">Veridia Assistant</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Online now</p>
+        </div>
+      </div>
+      <button (click)="closeChatbot()" 
+              class="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Close chatbot">
+        <span class="material-symbols-outlined text-sm">close</span>
+      </button>
+    </div>
+
+    <!-- Chatbot Messages -->
+    <div class="flex-1 overflow-y-auto p-4 space-y-4 max-h-96">
+      <div *ngFor="let msg of chatbotMessages" 
+           class="flex" 
+           [class.justify-end]="msg.type === 'user'"
+           [class.justify-start]="msg.type === 'bot'">
+        <div class="max-w-[80%]"
+             [class.bg-primary]="msg.type === 'user'"
+             [class.text-white]="msg.type === 'user'"
+             [class.bg-gray-100]="msg.type === 'bot'"
+             [class.dark:bg-gray-800]="msg.type === 'bot'"
+             [class.text-gray-800]="msg.type === 'bot'"
+             [class.dark:text-gray-200]="msg.type === 'bot'"
+             class="px-3 py-2 rounded-lg text-sm">
+          {{ msg.message }}
+        </div>
+      </div>
+      
+      <!-- Typing Indicator -->
+      <div *ngIf="isTyping" class="flex justify-start">
+        <div class="bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg text-sm">
+          <div class="flex space-x-1">
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chatbot Input -->
+    <div class="p-4 border-t border-gray-200 dark:border-content-dark/10">
+      <div class="flex gap-2">
+        <input type="text" 
+               [(ngModel)]="currentUserMessage"
+               (keypress)="onKeyPress($event)"
+               placeholder="Type your message..."
+               class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-background-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+        <button (click)="sendMessage()" 
+                [disabled]="!currentUserMessage.trim()"
+                class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

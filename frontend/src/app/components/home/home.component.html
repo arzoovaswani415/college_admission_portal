@@ -1,0 +1,106 @@
+<div class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to Our College</h1>
+    <p class="hero-subtitle">Your Future Starts Here</p>
+    <p class="hero-description">
+      Join thousands of students who have chosen our institution for their higher education journey. 
+      Apply now and take the first step towards your dream career.
+    </p>
+    <div class="hero-actions">
+      <button mat-raised-button color="primary" size="large" (click)="navigateToApplication()">
+        <mat-icon>school</mat-icon>
+        Apply Now
+      </button>
+      <button mat-stroked-button color="primary" size="large" (click)="navigateToAdmin()">
+        <mat-icon>admin_panel_settings</mat-icon>
+        Admin Portal
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="features-section">
+  <div class="container">
+    <h2 class="section-title">Why Choose Our College?</h2>
+    <div class="features-grid">
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>emoji_events</mat-icon>
+          <mat-card-title>Excellence in Education</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>World-class faculty and cutting-edge curriculum designed to prepare you for the future.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>groups</mat-icon>
+          <mat-card-title>Diverse Community</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Join a vibrant community of students from around the world, fostering global perspectives.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>work</mat-icon>
+          <mat-card-title>Career Opportunities</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Strong industry connections and career services to help you land your dream job.</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="feature-card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar>science</mat-icon>
+          <mat-card-title>Research Excellence</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>State-of-the-art research facilities and opportunities to work on groundbreaking projects.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="stats-section">
+  <div class="container">
+    <h2 class="section-title">Our Impact</h2>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">15,000+</div>
+        <div class="stat-label">Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">95%</div>
+        <div class="stat-label">Employment Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Programs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <div class="container">
+    <mat-card class="cta-card">
+      <mat-card-content>
+        <h2>Ready to Start Your Journey?</h2>
+        <p>Don't wait - applications are now open for the next academic year.</p>
+        <button mat-raised-button color="accent" size="large" (click)="navigateToApplication()">
+          <mat-icon>arrow_forward</mat-icon>
+          Start Application
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,271 @@
+.admin-dashboard {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Statistics Section */
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.8;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status-specific colors */
+.status-pending .stat-icon {
+  color: #ffc107;
+}
+
+.status-under-review .stat-icon {
+  color: #17a2b8;
+}
+
+.status-accepted .stat-icon {
+  color: #28a745;
+}
+
+.status-rejected .stat-icon {
+  color: #dc3545;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-section mat-form-field {
+  min-width: 200px;
+}
+
+/* Table Container */
+.table-container {
+  margin-bottom: 2rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.applications-table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.name-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.name {
+  font-weight: 500;
+  color: #333;
+}
+
+.email {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.action-buttons button {
+  min-width: 40px;
+  height: 40px;
+}
+
+/* Loading Container */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Material Table Customization */
+::ng-deep .mat-table {
+  background-color: white;
+}
+
+::ng-deep .mat-header-cell {
+  font-weight: 600;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+::ng-deep .mat-cell {
+  padding: 1rem 0.5rem;
+}
+
+::ng-deep .mat-row:hover {
+  background-color: #f8f9fa;
+}
+
+::ng-deep .mat-paginator {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Chip Customization */
+::ng-deep .mat-chip {
+  font-weight: 500;
+  min-height: 32px;
+}
+
+::ng-deep .mat-chip.mat-chip-selected {
+  color: white;
+}
+
+::ng-deep .mat-chip.mat-primary {
+  background-color: #667eea;
+  color: white;
+}
+
+::ng-deep .mat-chip.mat-accent {
+  background-color: #28a745;
+  color: white;
+}
+
+::ng-deep .mat-chip.mat-warn {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Menu Customization */
+::ng-deep .mat-menu-panel {
+  min-width: 200px;
+}
+
+::ng-deep .mat-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 10px;
+  }
+  
+  .stats-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-section mat-form-field {
+    width: 100%;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .stat-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .stat-icon {
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}

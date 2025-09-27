@@ -1,0 +1,318 @@
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles for College Admission Portal */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Custom Material Theme Colors */
+:root {
+  --primary-color: #667eea;
+  --accent-color: #764ba2;
+  --warn-color: #dc3545;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+}
+
+/* Custom Snackbar Styles */
+.success-snackbar {
+  background-color: var(--success-color) !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background-color: var(--warn-color) !important;
+  color: white !important;
+}
+
+.info-snackbar {
+  background-color: var(--info-color) !important;
+  color: white !important;
+}
+
+/* Custom Button Styles */
+.mat-raised-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+.mat-stroked-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+.mat-flat-button {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  text-transform: none !important;
+}
+
+/* Custom Card Styles */
+.mat-card {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  transition: box-shadow 0.3s ease !important;
+}
+
+.mat-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom Form Field Styles */
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 8px !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-width: 2px !important;
+}
+
+/* Custom Table Styles */
+.mat-table {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.mat-header-cell {
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+.mat-cell {
+  padding: 1rem !important;
+}
+
+/* Custom Chip Styles */
+.mat-chip {
+  border-radius: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Custom Stepper Styles */
+.mat-stepper-horizontal {
+  background-color: transparent !important;
+}
+
+.mat-step-header {
+  border-radius: 8px !important;
+  margin-bottom: 1rem !important;
+}
+
+.mat-step-icon {
+  border-radius: 50% !important;
+}
+
+/* Custom Toolbar Styles */
+.mat-toolbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Custom Paginator Styles */
+.mat-paginator {
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* Custom Menu Styles */
+.mat-menu-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom Dialog Styles */
+.mat-dialog-container {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Custom Progress Spinner Styles */
+.mat-progress-spinner circle {
+  stroke: var(--primary-color) !important;
+}
+
+/* Custom Tabs Styles */
+.mat-tab-group {
+  border-radius: 8px !important;
+}
+
+.mat-tab-header {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Custom Divider Styles */
+.mat-divider {
+  border-color: #e0e0e0 !important;
+}
+
+/* Custom Icon Styles */
+.mat-icon {
+  vertical-align: middle !important;
+}
+
+/* Custom Tooltip Styles */
+.mat-tooltip {
+  font-size: 0.875rem !important;
+  border-radius: 4px !important;
+}
+
+/* Custom Progress Bar Styles */
+.mat-progress-bar {
+  border-radius: 4px !important;
+}
+
+/* Custom Slide Toggle Styles */
+.mat-slide-toggle {
+  border-radius: 16px !important;
+}
+
+/* Custom Slider Styles */
+.mat-slider {
+  border-radius: 4px !important;
+}
+
+/* Custom Select Styles */
+.mat-select {
+  border-radius: 8px !important;
+}
+
+/* Custom Datepicker Styles */
+.mat-datepicker-toggle {
+  border-radius: 4px !important;
+}
+
+/* Custom Autocomplete Styles */
+.mat-autocomplete-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom Expansion Panel Styles */
+.mat-expansion-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Custom Tree Styles */
+.mat-tree {
+  border-radius: 8px !important;
+}
+
+/* Custom Sidenav Styles */
+.mat-sidenav {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+/* Custom Bottom Sheet Styles */
+.mat-bottom-sheet-container {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+/* Custom Snack Bar Container Styles */
+.mat-snack-bar-container {
+  border-radius: 8px !important;
+}
+
+/* Custom Progress Spinner in Button */
+.mat-button .mat-spinner {
+  margin-right: 8px !important;
+}
+
+/* Custom Focus Styles */
+.mat-focus-indicator:focus {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: 2px !important;
+}
+
+/* Custom Ripple Effects */
+.mat-ripple {
+  border-radius: 8px !important;
+}
+
+/* Custom Animation Styles */
+.mat-elevation-z1 {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.mat-elevation-z2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.mat-elevation-z4 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-elevation-z8 {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .mat-card {
+    margin: 0.5rem !important;
+  }
+  
+  .mat-toolbar {
+    padding: 0 1rem !important;
+  }
+  
+  .mat-table {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mat-card {
+    margin: 0.25rem !important;
+  }
+  
+  .mat-button {
+    min-width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .mat-icon-button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .mat-toolbar,
+  .mat-fab,
+  .mat-mini-fab,
+  .mat-raised-button,
+  .mat-stroked-button,
+  .mat-flat-button {
+    display: none !important;
+  }
+  
+  .mat-card {
+    box-shadow: none !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+}
