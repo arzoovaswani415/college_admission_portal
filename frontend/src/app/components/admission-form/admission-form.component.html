@@ -15,246 +15,383 @@
       <!-- Step 1: Personal Information -->
       <mat-step [stepControl]="admissionForm.get('personalInfo')!" label="Personal Information">
         <div formGroupName="personalInfo" class="step-content">
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>First Name *</mat-label>
-              <input matInput formControlName="firstName" placeholder="Enter your first name">
-              <mat-error *ngIf="isFieldInvalid('firstName', 'personalInfo')">
-                {{ getErrorMessage('firstName', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Last Name *</mat-label>
-              <input matInput formControlName="lastName" placeholder="Enter your last name">
-              <mat-error *ngIf="isFieldInvalid('lastName', 'personalInfo')">
-                {{ getErrorMessage('lastName', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
+          <div class="section-header">
+            <h2 class="section-title">Personal Details</h2>
+            <p class="section-description">Please provide your personal information</p>
           </div>
 
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Email *</mat-label>
-              <input matInput formControlName="email" type="email" placeholder="Enter your email">
-              <mat-error *ngIf="isFieldInvalid('email', 'personalInfo')">
-                {{ getErrorMessage('email', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
+          <div class="form-section">
+            <!-- Name Fields Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field name-field">
+                <mat-label>First Name *</mat-label>
+                <input matInput formControlName="firstName" placeholder="Enter your first name">
+                <mat-error *ngIf="isFieldInvalid('firstName', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('firstName', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Phone *</mat-label>
-              <input matInput formControlName="phone" placeholder="Enter your phone number">
-              <mat-error *ngIf="isFieldInvalid('phone', 'personalInfo')">
-                {{ getErrorMessage('phone', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
-          </div>
+              <mat-form-field appearance="outline" class="form-field name-field">
+                <mat-label>Last Name *</mat-label>
+                <input matInput formControlName="lastName" placeholder="Enter your last name">
+                <mat-error *ngIf="isFieldInvalid('lastName', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('lastName', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Date of Birth *</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error *ngIf="isFieldInvalid('dateOfBirth', 'personalInfo')">
-                {{ getErrorMessage('dateOfBirth', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
+            <!-- Contact Fields Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field contact-field">
+                <mat-label>Email Address *</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="Enter your email address">
+                <mat-error *ngIf="isFieldInvalid('email', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('email', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
 
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Gender *</mat-label>
-              <mat-select formControlName="gender">
-                <mat-option value="Male">Male</mat-option>
-                <mat-option value="Female">Female</mat-option>
-                <mat-option value="Other">Other</mat-option>
-              </mat-select>
-              <mat-error *ngIf="isFieldInvalid('gender', 'personalInfo')">
-                {{ getErrorMessage('gender', 'personalInfo') }}
-              </mat-error>
-            </mat-form-field>
+              <mat-form-field appearance="outline" class="form-field contact-field">
+                <mat-label>Phone Number *</mat-label>
+                <input matInput formControlName="phone" placeholder="Enter your phone number">
+                <mat-error *ngIf="isFieldInvalid('phone', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('phone', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Personal Details Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field date-field">
+                <mat-label>Date of Birth *</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="isFieldInvalid('dateOfBirth', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('dateOfBirth', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field gender-field">
+                <mat-label>Gender *</mat-label>
+                <mat-select formControlName="gender">
+                  <mat-option value="Male">Male</mat-option>
+                  <mat-option value="Female">Female</mat-option>
+                  <mat-option value="Other">Other</mat-option>
+                </mat-select>
+                <mat-error *ngIf="isFieldInvalid('gender', 'personalInfo')" class="error-message">
+                  {{ getErrorMessage('gender', 'personalInfo') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
         </div>
 
         <div class="step-actions">
-          <button mat-button matStepperNext color="primary">Next</button>
+          <button mat-button matStepperNext color="primary" class="next-button">
+            <mat-icon>arrow_forward</mat-icon>
+            Next Step
+          </button>
         </div>
       </mat-step>
 
       <!-- Step 2: Address Information -->
       <mat-step [stepControl]="admissionForm.get('address')!" label="Address Information">
         <div formGroupName="address" class="step-content">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Street Address *</mat-label>
-            <input matInput formControlName="street" placeholder="Enter your street address">
-            <mat-error *ngIf="isFieldInvalid('street', 'address')">
-              {{ getErrorMessage('street', 'address') }}
-            </mat-error>
-          </mat-form-field>
-
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>City *</mat-label>
-              <input matInput formControlName="city" placeholder="Enter your city">
-              <mat-error *ngIf="isFieldInvalid('city', 'address')">
-                {{ getErrorMessage('city', 'address') }}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>State *</mat-label>
-              <input matInput formControlName="state" placeholder="Enter your state">
-              <mat-error *ngIf="isFieldInvalid('state', 'address')">
-                {{ getErrorMessage('state', 'address') }}
-              </mat-error>
-            </mat-form-field>
+          <div class="section-header">
+            <h2 class="section-title">Address Details</h2>
+            <p class="section-description">Please provide your current address information</p>
           </div>
 
-          <div class="form-row">
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>ZIP Code *</mat-label>
-              <input matInput formControlName="zipCode" placeholder="Enter your ZIP code">
-              <mat-error *ngIf="isFieldInvalid('zipCode', 'address')">
-                {{ getErrorMessage('zipCode', 'address') }}
+          <div class="form-section">
+            <!-- Street Address - Full Width -->
+            <mat-form-field appearance="outline" class="form-field full-width street-field">
+              <mat-label>Street Address *</mat-label>
+              <input matInput formControlName="street" placeholder="Enter your street address">
+              <mat-error *ngIf="isFieldInvalid('street', 'address')" class="error-message">
+                {{ getErrorMessage('street', 'address') }}
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="half-width">
-              <mat-label>Country *</mat-label>
-              <input matInput formControlName="country" placeholder="Enter your country">
-              <mat-error *ngIf="isFieldInvalid('country', 'address')">
-                {{ getErrorMessage('country', 'address') }}
-              </mat-error>
-            </mat-form-field>
+            <!-- City and State Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field city-field">
+                <mat-label>City *</mat-label>
+                <input matInput formControlName="city" placeholder="Enter your city">
+                <mat-error *ngIf="isFieldInvalid('city', 'address')" class="error-message">
+                  {{ getErrorMessage('city', 'address') }}
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field state-field">
+                <mat-label>State/Province *</mat-label>
+                <input matInput formControlName="state" placeholder="Enter your state">
+                <mat-error *ngIf="isFieldInvalid('state', 'address')" class="error-message">
+                  {{ getErrorMessage('state', 'address') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- ZIP and Country Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field zip-field">
+                <mat-label>ZIP/Postal Code *</mat-label>
+                <input matInput formControlName="zipCode" placeholder="Enter your ZIP code">
+                <mat-error *ngIf="isFieldInvalid('zipCode', 'address')" class="error-message">
+                  {{ getErrorMessage('zipCode', 'address') }}
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field country-field">
+                <mat-label>Country *</mat-label>
+                <input matInput formControlName="country" placeholder="Enter your country">
+                <mat-error *ngIf="isFieldInvalid('country', 'address')" class="error-message">
+                  {{ getErrorMessage('country', 'address') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
         </div>
 
         <div class="step-actions">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext color="primary">Next</button>
+          <button mat-button matStepperPrevious class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-button matStepperNext color="primary" class="next-button">
+            <mat-icon>arrow_forward</mat-icon>
+            Next Step
+          </button>
         </div>
       </mat-step>
 
       <!-- Step 3: Academic Information -->
       <mat-step [stepControl]="admissionForm.get('academicInfo')!" label="Academic Information">
         <div formGroupName="academicInfo" class="step-content">
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Course Selection *</mat-label>
-            <mat-select formControlName="course">
-              <mat-option *ngFor="let course of courses" [value]="course">
-                {{ course }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="isFieldInvalid('course', 'academicInfo')">
-              {{ getErrorMessage('course', 'academicInfo') }}
-            </mat-error>
-          </mat-form-field>
+          <div class="section-header">
+            <h2 class="section-title">Academic Details</h2>
+            <p class="section-description">Please provide your academic information and course selection</p>
+          </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Previous Education *</mat-label>
-            <textarea matInput formControlName="previousEducation" 
-                     placeholder="Please describe your previous educational background"
-                     rows="4"></textarea>
-            <mat-error *ngIf="isFieldInvalid('previousEducation', 'academicInfo')">
-              {{ getErrorMessage('previousEducation', 'academicInfo') }}
-            </mat-error>
-          </mat-form-field>
+          <div class="form-section">
+            <!-- Course Selection - Full Width -->
+            <mat-form-field appearance="outline" class="form-field full-width course-field">
+              <mat-label>Course Selection *</mat-label>
+              <mat-select formControlName="course">
+                <mat-option *ngFor="let course of courses" [value]="course">
+                  {{ course }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="isFieldInvalid('course', 'academicInfo')" class="error-message">
+                {{ getErrorMessage('course', 'academicInfo') }}
+              </mat-error>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="half-width">
-            <mat-label>GPA (Optional)</mat-label>
-            <input matInput formControlName="gpa" type="number" 
-                   placeholder="Enter your GPA (0.0 - 4.0)" 
-                   min="0" max="4" step="0.1">
-            <mat-error *ngIf="isFieldInvalid('gpa', 'academicInfo')">
-              {{ getErrorMessage('gpa', 'academicInfo') }}
-            </mat-error>
-          </mat-form-field>
+            <!-- Previous Education - Full Width Textarea -->
+            <mat-form-field appearance="outline" class="form-field full-width education-field">
+              <mat-label>Previous Education *</mat-label>
+              <textarea matInput formControlName="previousEducation" 
+                       placeholder="Please describe your previous educational background, including schools attended, degrees earned, and relevant coursework"
+                       rows="4"></textarea>
+              <mat-error *ngIf="isFieldInvalid('previousEducation', 'academicInfo')" class="error-message">
+                {{ getErrorMessage('previousEducation', 'academicInfo') }}
+              </mat-error>
+            </mat-form-field>
+
+            <!-- GPA and Academic Level Row -->
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field gpa-field">
+                <mat-label>GPA (Optional)</mat-label>
+                <input matInput formControlName="gpa" type="number" 
+                       placeholder="Enter your GPA (0.0 - 4.0)" 
+                       min="0" max="4" step="0.1">
+                <mat-error *ngIf="isFieldInvalid('gpa', 'academicInfo')" class="error-message">
+                  {{ getErrorMessage('gpa', 'academicInfo') }}
+                </mat-error>
+              </mat-form-field>
+
+              <div class="form-field academic-level-field">
+                <label class="field-label">Academic Level *</label>
+                <div class="radio-group">
+                  <mat-radio-group formControlName="academicLevel" class="radio-options">
+                    <mat-radio-button value="Undergraduate" class="radio-option">Undergraduate</mat-radio-button>
+                    <mat-radio-button value="Graduate" class="radio-option">Graduate</mat-radio-button>
+                    <mat-radio-button value="Doctorate" class="radio-option">Doctorate</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div *ngIf="isFieldInvalid('academicLevel', 'academicInfo')" class="error-message">
+                  {{ getErrorMessage('academicLevel', 'academicInfo') }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="step-actions">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext color="primary">Next</button>
+          <button mat-button matStepperPrevious class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-button matStepperNext color="primary" class="next-button">
+            <mat-icon>arrow_forward</mat-icon>
+            Next Step
+          </button>
         </div>
       </mat-step>
 
       <!-- Step 4: Documents (Optional) -->
-      <mat-step label="Documents (Optional)">
+      <mat-step label="Supporting Documents">
         <div formGroupName="documents" class="step-content">
-          <p class="step-description">
-            You can upload supporting documents to strengthen your application. 
-            All fields are optional.
-          </p>
+          <div class="section-header">
+            <h2 class="section-title">Supporting Documents</h2>
+            <p class="section-description">
+              You can upload supporting documents to strengthen your application. 
+              All fields are optional but recommended.
+            </p>
+          </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Resume/CV</mat-label>
-            <input matInput formControlName="resume" placeholder="Link to your resume">
-          </mat-form-field>
+          <div class="form-section">
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Resume/CV</mat-label>
+              <input matInput formControlName="resume" placeholder="Link to your resume or CV">
+              <mat-hint>Provide a link to your resume or CV (Google Drive, Dropbox, etc.)</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Academic Transcript</mat-label>
-            <input matInput formControlName="transcript" placeholder="Link to your transcript">
-          </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Academic Transcript</mat-label>
+              <input matInput formControlName="transcript" placeholder="Link to your academic transcript">
+              <mat-hint>Provide a link to your most recent academic transcript</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Recommendation Letter</mat-label>
-            <input matInput formControlName="recommendationLetter" placeholder="Link to recommendation letter">
-          </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Recommendation Letter</mat-label>
+              <input matInput formControlName="recommendationLetter" placeholder="Link to recommendation letter">
+              <mat-hint>Provide a link to your recommendation letter(s)</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Other Documents</mat-label>
-            <input matInput formControlName="other" placeholder="Link to other supporting documents">
-          </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field full-width">
+              <mat-label>Other Supporting Documents</mat-label>
+              <input matInput formControlName="other" placeholder="Link to other supporting documents">
+              <mat-hint>Provide links to any other relevant documents (portfolio, certificates, etc.)</mat-hint>
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="step-actions">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext color="primary">Review</button>
+          <button mat-button matStepperPrevious class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+          <button mat-button matStepperNext color="primary" class="next-button">
+            <mat-icon>arrow_forward</mat-icon>
+            Review Application
+          </button>
         </div>
       </mat-step>
 
       <!-- Step 5: Review and Submit -->
       <mat-step label="Review and Submit">
         <div class="step-content">
-          <h3>Review Your Application</h3>
-          <p>Please review all the information before submitting your application.</p>
-
-          <div class="review-section">
-            <h4>Personal Information</h4>
-            <div class="review-content">
-              <p><strong>Name:</strong> {{ admissionForm.get('personalInfo.firstName')?.value }} {{ admissionForm.get('personalInfo.lastName')?.value }}</p>
-              <p><strong>Email:</strong> {{ admissionForm.get('personalInfo.email')?.value }}</p>
-              <p><strong>Phone:</strong> {{ admissionForm.get('personalInfo.phone')?.value }}</p>
-              <p><strong>Date of Birth:</strong> {{ admissionForm.get('personalInfo.dateOfBirth')?.value | date }}</p>
-              <p><strong>Gender:</strong> {{ admissionForm.get('personalInfo.gender')?.value }}</p>
-            </div>
+          <div class="section-header">
+            <h2 class="section-title">Review Your Application</h2>
+            <p class="section-description">Please review all the information before submitting your application.</p>
           </div>
 
-          <div class="review-section">
-            <h4>Address</h4>
-            <div class="review-content">
-              <p><strong>Street:</strong> {{ admissionForm.get('address.street')?.value }}</p>
-              <p><strong>City:</strong> {{ admissionForm.get('address.city')?.value }}</p>
-              <p><strong>State:</strong> {{ admissionForm.get('address.state')?.value }}</p>
-              <p><strong>ZIP Code:</strong> {{ admissionForm.get('address.zipCode')?.value }}</p>
-              <p><strong>Country:</strong> {{ admissionForm.get('address.country')?.value }}</p>
+          <div class="review-container">
+            <div class="review-section">
+              <h3 class="review-title">
+                <mat-icon>person</mat-icon>
+                Personal Information
+              </h3>
+              <div class="review-content">
+                <div class="review-item">
+                  <span class="review-label">Full Name:</span>
+                  <span class="review-value">{{ admissionForm.get('personalInfo.firstName')?.value }} {{ admissionForm.get('personalInfo.lastName')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Email:</span>
+                  <span class="review-value">{{ admissionForm.get('personalInfo.email')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Phone:</span>
+                  <span class="review-value">{{ admissionForm.get('personalInfo.phone')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Date of Birth:</span>
+                  <span class="review-value">{{ admissionForm.get('personalInfo.dateOfBirth')?.value | date }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Gender:</span>
+                  <span class="review-value">{{ admissionForm.get('personalInfo.gender')?.value }}</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="review-section">
-            <h4>Academic Information</h4>
-            <div class="review-content">
-              <p><strong>Course:</strong> {{ admissionForm.get('academicInfo.course')?.value }}</p>
-              <p><strong>Previous Education:</strong> {{ admissionForm.get('academicInfo.previousEducation')?.value }}</p>
-              <p *ngIf="admissionForm.get('academicInfo.gpa')?.value"><strong>GPA:</strong> {{ admissionForm.get('academicInfo.gpa')?.value }}</p>
+            <div class="review-section">
+              <h3 class="review-title">
+                <mat-icon>location_on</mat-icon>
+                Address Information
+              </h3>
+              <div class="review-content">
+                <div class="review-item">
+                  <span class="review-label">Street:</span>
+                  <span class="review-value">{{ admissionForm.get('address.street')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">City:</span>
+                  <span class="review-value">{{ admissionForm.get('address.city')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">State:</span>
+                  <span class="review-value">{{ admissionForm.get('address.state')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">ZIP Code:</span>
+                  <span class="review-value">{{ admissionForm.get('address.zipCode')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Country:</span>
+                  <span class="review-value">{{ admissionForm.get('address.country')?.value }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-section">
+              <h3 class="review-title">
+                <mat-icon>school</mat-icon>
+                Academic Information
+              </h3>
+              <div class="review-content">
+                <div class="review-item">
+                  <span class="review-label">Course:</span>
+                  <span class="review-value">{{ admissionForm.get('academicInfo.course')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Previous Education:</span>
+                  <span class="review-value">{{ admissionForm.get('academicInfo.previousEducation')?.value }}</span>
+                </div>
+                <div class="review-item" *ngIf="admissionForm.get('academicInfo.gpa')?.value">
+                  <span class="review-label">GPA:</span>
+                  <span class="review-value">{{ admissionForm.get('academicInfo.gpa')?.value }}</span>
+                </div>
+                <div class="review-item">
+                  <span class="review-label">Academic Level:</span>
+                  <span class="review-value">{{ admissionForm.get('academicInfo.academicLevel')?.value }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="step-actions">
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperPrevious class="back-button">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
           <button mat-raised-button color="primary" type="submit" 
+                  class="submit-button"
                   [disabled]="isSubmitting || admissionForm.invalid">
             <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+            <mat-icon *ngIf="!isSubmitting">send</mat-icon>
             <span *ngIf="!isSubmitting">Submit Application</span>
             <span *ngIf="isSubmitting">Submitting...</span>
           </button>

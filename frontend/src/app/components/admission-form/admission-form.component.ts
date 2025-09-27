@@ -51,7 +51,8 @@ export class AdmissionFormComponent implements OnInit {
       academicInfo: this.fb.group({
         course: ['', Validators.required],
         previousEducation: ['', [Validators.required, Validators.minLength(10)]],
-        gpa: ['', [Validators.min(0), Validators.max(4.0)]]
+        gpa: ['', [Validators.min(0), Validators.max(4.0)]],
+        academicLevel: ['', Validators.required]
       }),
       documents: this.fb.group({
         resume: [''],
@@ -160,7 +161,8 @@ export class AdmissionFormComponent implements OnInit {
       country: 'Country',
       course: 'Course',
       previousEducation: 'Previous Education',
-      gpa: 'GPA'
+      gpa: 'GPA',
+      academicLevel: 'Academic Level'
     };
     return displayNames[fieldName] || fieldName;
   }
@@ -169,7 +171,7 @@ export class AdmissionFormComponent implements OnInit {
     const control = groupName 
       ? this.admissionForm.get(`${groupName}.${controlName}`)
       : this.admissionForm.get(controlName);
-    return !!(control && control.invalid && control.touched);
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   getCurrentStep(): number {
