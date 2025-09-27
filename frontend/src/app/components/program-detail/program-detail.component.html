@@ -1,0 +1,210 @@
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+  <p>Loading program details...</p>
+</div>
+
+<!-- Program Detail Content -->
+<div class="program-detail-container" *ngIf="program && !isLoading">
+  <!-- Back Button -->
+  <div class="back-section">
+    <button mat-button (click)="navigateBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Programs
+    </button>
+  </div>
+
+  <!-- Program Header -->
+  <section class="program-header">
+    <div class="program-hero">
+      <div class="program-image">
+        <img [src]="program.image" [alt]="program.title" class="hero-image">
+        <div class="image-overlay"></div>
+      </div>
+      <div class="program-info">
+        <div class="program-badge">{{ program.category }}</div>
+        <h1 class="program-title">{{ program.title }}</h1>
+        <p class="program-description">{{ program.description }}</p>
+        <div class="program-meta">
+          <div class="meta-item">
+            <mat-icon>schedule</mat-icon>
+            <span>{{ program.duration }}</span>
+          </div>
+          <div class="meta-item">
+            <mat-icon>school</mat-icon>
+            <span>{{ program.degree }}</span>
+          </div>
+          <div class="meta-item">
+            <mat-icon>people</mat-icon>
+            <span>{{ program.seats }} Seats Available</span>
+          </div>
+          <div class="meta-item">
+            <mat-icon>attach_money</mat-icon>
+            <span>{{ getFormattedTuition() }} / Year</span>
+          </div>
+        </div>
+        <div class="program-actions">
+          <button mat-raised-button color="primary" (click)="navigateToApplication()" class="apply-button">
+            <mat-icon>school</mat-icon>
+            Apply Now
+          </button>
+          <button mat-button class="info-button">
+            <mat-icon>info</mat-icon>
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Details Grid -->
+  <section class="program-details">
+    <div class="details-grid">
+      <!-- Eligibility Criteria -->
+      <div class="detail-card">
+        <div class="card-header">
+          <mat-icon class="card-icon">checklist</mat-icon>
+          <h3 class="card-title">Eligibility Criteria</h3>
+        </div>
+        <div class="card-content">
+          <ul class="criteria-list">
+            <li *ngFor="let criterion of program.eligibility" class="criterion-item">
+              <mat-icon class="check-icon">check_circle</mat-icon>
+              <span>{{ criterion }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Career Scope -->
+      <div class="detail-card">
+        <div class="card-header">
+          <mat-icon class="card-icon">work</mat-icon>
+          <h3 class="card-title">Career Opportunities</h3>
+        </div>
+        <div class="card-content">
+          <div class="career-grid">
+            <div *ngFor="let career of program.careerScope" class="career-item">
+              <mat-icon class="career-icon">trending_up</mat-icon>
+              <span>{{ career }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Application Requirements -->
+      <div class="detail-card">
+        <div class="card-header">
+          <mat-icon class="card-icon">description</mat-icon>
+          <h3 class="card-title">Application Requirements</h3>
+        </div>
+        <div class="card-content">
+          <ul class="requirements-list">
+            <li *ngFor="let requirement of program.requirements" class="requirement-item">
+              <mat-icon class="list-icon">radio_button_checked</mat-icon>
+              <span>{{ requirement }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Program Statistics -->
+      <div class="detail-card stats-card">
+        <div class="card-header">
+          <mat-icon class="card-icon">analytics</mat-icon>
+          <h3 class="card-title">Program Statistics</h3>
+        </div>
+        <div class="card-content">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">{{ program.seats }}</div>
+              <div class="stat-label">Available Seats</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ program.duration }}</div>
+              <div class="stat-label">Program Duration</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ program.degree }}</div>
+              <div class="stat-label">Degree Level</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ program.category }}</div>
+              <div class="stat-label">Category</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Timeline -->
+  <section class="timeline-section">
+    <div class="timeline-container">
+      <h2 class="section-title">Application Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="timeline-content">
+            <h4>Application Deadline</h4>
+            <p>{{ program.applicationDeadline }}</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <mat-icon>review</mat-icon>
+          </div>
+          <div class="timeline-content">
+            <h4>Review Period</h4>
+            <p>Applications reviewed within 4-6 weeks</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <mat-icon>notifications</mat-icon>
+          </div>
+          <div class="timeline-content">
+            <h4>Decision Notification</h4>
+            <p>Admission decisions sent by email</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Start Your Journey?</h2>
+      <p class="cta-description">
+        Join thousands of students who have chosen {{ program.title }} at Verdia University. 
+        Begin your application today and take the first step toward your future career.
+      </p>
+      <div class="cta-actions">
+        <button mat-raised-button color="primary" (click)="navigateToApplication()" class="cta-button">
+          <mat-icon>arrow_forward</mat-icon>
+          Start Application
+        </button>
+        <button mat-button class="secondary-button">
+          <mat-icon>download</mat-icon>
+          Download Brochure
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Program Not Found -->
+<div class="not-found-container" *ngIf="!program && !isLoading">
+  <div class="not-found-content">
+    <mat-icon class="not-found-icon">school</mat-icon>
+    <h2>Program Not Found</h2>
+    <p>The program you're looking for doesn't exist or has been moved.</p>
+    <button mat-raised-button color="primary" (click)="navigateBack()">
+      <mat-icon>home</mat-icon>
+      Back to Home
+    </button>
+  </div>
+</div>

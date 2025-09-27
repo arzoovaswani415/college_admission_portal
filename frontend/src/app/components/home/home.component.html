@@ -1,74 +1,174 @@
-<div class="hero-section">
-  <div class="hero-content">
-    <h1 class="hero-title">Welcome to Our College</h1>
-    <p class="hero-subtitle">Your Future Starts Here</p>
-    <p class="hero-description">
-      Join thousands of students who have chosen our institution for their higher education journey. 
-      Apply now and take the first step towards your dream career.
-    </p>
-    <div class="hero-actions">
-      <button mat-raised-button color="primary" size="large" (click)="navigateToApplication()">
-        <mat-icon>school</mat-icon>
-        Apply Now
-      </button>
-      <button mat-stroked-button color="primary" size="large" (click)="navigateToAdmin()">
-        <mat-icon>admin_panel_settings</mat-icon>
-        Admin Portal
-      </button>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-background">
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+         alt="Verdia University Campus" 
+         class="hero-image">
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Verdia University</h1>
+      <p class="hero-subtitle">Excellence in Education Since 1895</p>
+      <p class="hero-description">
+        Join thousands of students who have chosen Verdia University for their higher education journey. 
+        Discover your potential and shape your future with world-class programs and dedicated faculty.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" (click)="navigateToApplication()">
+          <mat-icon>school</mat-icon>
+          Apply Now
+        </button>
+        <button class="btn btn-secondary" (click)="navigateToAdmin()">
+          <mat-icon>admin_panel_settings</mat-icon>
+          Admin Portal
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="features-section">
+<!-- About Section -->
+<section class="about-section">
   <div class="container">
-    <h2 class="section-title">Why Choose Our College?</h2>
+    <div class="section-header">
+      <h2 class="section-title">About Verdia University</h2>
+      <p class="section-subtitle">
+        Founded on the principles of innovation and excellence, Verdia University has been a beacon of higher learning for over a century.
+      </p>
+    </div>
+    
     <div class="features-grid">
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>emoji_events</mat-icon>
-          <mat-card-title>Excellence in Education</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>World-class faculty and cutting-edge curriculum designed to prepare you for the future.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>groups</mat-icon>
-          <mat-card-title>Diverse Community</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Join a vibrant community of students from around the world, fostering global perspectives.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>work</mat-icon>
-          <mat-card-title>Career Opportunities</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Strong industry connections and career services to help you land your dream job.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>science</mat-icon>
-          <mat-card-title>Research Excellence</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>State-of-the-art research facilities and opportunities to work on groundbreaking projects.</p>
-        </mat-card-content>
-      </mat-card>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <mat-icon>emoji_events</mat-icon>
+        </div>
+        <h3 class="feature-title">Academic Excellence</h3>
+        <p class="feature-description">
+          World-class faculty and cutting-edge curriculum designed to prepare you for the future.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <mat-icon>groups</mat-icon>
+        </div>
+        <h3 class="feature-title">Diverse Community</h3>
+        <p class="feature-description">
+          Join a vibrant community of students from around the world, fostering global perspectives.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <mat-icon>work</mat-icon>
+        </div>
+        <h3 class="feature-title">Career Opportunities</h3>
+        <p class="feature-description">
+          Strong industry connections and career services to help you land your dream job.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <mat-icon>science</mat-icon>
+        </div>
+        <h3 class="feature-title">Research Excellence</h3>
+        <p class="feature-description">
+          State-of-the-art research facilities and opportunities to work on groundbreaking projects.
+        </p>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="stats-section">
+<!-- Programs Section -->
+<section class="programs-section">
   <div class="container">
-    <h2 class="section-title">Our Impact</h2>
+    <div class="section-header">
+      <h2 class="section-title">Our Programs</h2>
+      <p class="section-subtitle">
+        Choose from over 50 undergraduate and graduate programs across various disciplines.
+      </p>
+    </div>
+    
+    <div class="programs-grid">
+      <div class="program-card" (click)="navigateToProgram('business-administration')">
+        <div class="program-image">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+               alt="Business Administration">
+        </div>
+        <div class="program-content">
+          <h3 class="program-title">Business Administration</h3>
+          <p class="program-description">
+            Develop leadership skills and business acumen with our comprehensive MBA program.
+          </p>
+          <div class="program-stats">
+            <span class="stat">
+              <mat-icon>schedule</mat-icon>
+              2 Years
+            </span>
+            <span class="stat">
+              <mat-icon>people</mat-icon>
+              150 Students
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="program-card" (click)="navigateToProgram('computer-science')">
+        <div class="program-image">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+               alt="Computer Science">
+        </div>
+        <div class="program-content">
+          <h3 class="program-title">Computer Science</h3>
+          <p class="program-description">
+            Master cutting-edge technologies and programming languages in our CS program.
+          </p>
+          <div class="program-stats">
+            <span class="stat">
+              <mat-icon>schedule</mat-icon>
+              4 Years
+            </span>
+            <span class="stat">
+              <mat-icon>people</mat-icon>
+              200 Students
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="program-card" (click)="navigateToProgram('engineering')">
+        <div class="program-image">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+               alt="Engineering">
+        </div>
+        <div class="program-content">
+          <h3 class="program-title">Engineering</h3>
+          <p class="program-description">
+            Build the future with our comprehensive engineering programs across multiple disciplines.
+          </p>
+          <div class="program-stats">
+            <span class="stat">
+              <mat-icon>schedule</mat-icon>
+              4 Years
+            </span>
+            <span class="stat">
+              <mat-icon>people</mat-icon>
+              300 Students
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+  <div class="container">
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-number">15,000+</div>
@@ -88,19 +188,27 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="cta-section">
+<!-- CTA Section -->
+<section class="cta-section">
   <div class="container">
-    <mat-card class="cta-card">
-      <mat-card-content>
-        <h2>Ready to Start Your Journey?</h2>
-        <p>Don't wait - applications are now open for the next academic year.</p>
-        <button mat-raised-button color="accent" size="large" (click)="navigateToApplication()">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to Start Your Journey?</h2>
+      <p class="cta-description">
+        Don't wait - applications are now open for the next academic year. 
+        Join the Verdia University community and unlock your potential.
+      </p>
+      <div class="cta-actions">
+        <button class="btn btn-primary btn-large" (click)="navigateToApplication()">
           <mat-icon>arrow_forward</mat-icon>
           Start Application
         </button>
-      </mat-card-content>
-    </mat-card>
+        <button class="btn btn-outline btn-large">
+          <mat-icon>info</mat-icon>
+          Learn More
+        </button>
+      </div>
+    </div>
   </div>
-</div>
+</section>

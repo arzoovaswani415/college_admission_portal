@@ -21,4 +21,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/admin']);
   }
 
+  navigateToProgram(programId: string): void {
+    this.router.navigate(['/programs', programId]);
+  }
+
 }

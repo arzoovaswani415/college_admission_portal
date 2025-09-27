@@ -171,4 +171,21 @@ export class AdmissionFormComponent implements OnInit {
       : this.admissionForm.get(controlName);
     return !!(control && control.invalid && control.touched);
   }
+
+  getCurrentStep(): number {
+    // This would be implemented based on the stepper's current step
+    return 1; // Placeholder - would be dynamic based on stepper
+  }
+
+  getProgressPercentage(): number {
+    // Calculate progress based on completed form sections
+    let completedSections = 0;
+    const totalSections = 3; // personalInfo, address, academicInfo
+    
+    if (this.admissionForm.get('personalInfo')?.valid) completedSections++;
+    if (this.admissionForm.get('address')?.valid) completedSections++;
+    if (this.admissionForm.get('academicInfo')?.valid) completedSections++;
+    
+    return (completedSections / totalSections) * 100;
+  }
 }

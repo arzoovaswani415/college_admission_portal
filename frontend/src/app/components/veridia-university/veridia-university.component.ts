@@ -139,4 +139,9 @@ export class VeridiaUniversityComponent implements OnInit {
       this.sendMessage();
     }
   }
+
+  onInputChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.currentUserMessage = target.value;
+  }
 }

@@ -1,7 +1,13 @@
 <div class="form-container">
   <div class="form-header">
-    <h1>College Admission Application</h1>
-    <p>Please fill out the form below to apply for admission to our college.</p>
+    <h1 class="form-title">Verdia University Admission Application</h1>
+    <p class="form-subtitle">Please fill out the form below to apply for admission to Verdia University.</p>
+    <div class="form-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="getProgressPercentage()"></div>
+      </div>
+      <span class="progress-text">Step {{ getCurrentStep() }} of 5</span>
+    </div>
   </div>
 
   <form [formGroup]="admissionForm" (ngSubmit)="onSubmit()" class="admission-form">

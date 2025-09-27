@@ -166,4 +166,16 @@ export class AdminDashboardComponent implements OnInit {
     if (!date) return 'N/A';
     return new Date(date).toLocaleDateString();
   }
+
+  getPendingCount(): number {
+    return this.dataSource.data.filter((admission: Admission) => 
+      admission.status === 'Pending' || admission.status === 'Under Review'
+    ).length;
+  }
+
+  getApprovedCount(): number {
+    return this.dataSource.data.filter((admission: Admission) => 
+      admission.status === 'Accepted'
+    ).length;
+  }
 }

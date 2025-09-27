@@ -5,6 +5,8 @@ import { AdmissionFormComponent } from './components/admission-form/admission-fo
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { ChatbotPlaceholderComponent } from './components/chatbot-placeholder/chatbot-placeholder.component';
 import { VeridiaUniversityComponent } from './components/veridia-university/veridia-university.component';
+import { ProgramDetailComponent } from './components/program-detail/program-detail.component';
+import { ScholarshipsComponent } from './components/scholarships/scholarships.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminDashboardComponent },
   { path: 'chatbot', component: ChatbotPlaceholderComponent },
   { path: 'veridia', component: VeridiaUniversityComponent },
+  { path: 'programs/:id', component: ProgramDetailComponent },
+  { path: 'scholarships', component: ScholarshipsComponent },
   { path: '**', redirectTo: '' }
 ];
 

@@ -38,6 +38,8 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ChatbotPlaceholderComponent } from './components/chatbot-placeholder/chatbot-placeholder.component';
 import { VeridiaUniversityComponent } from './components/veridia-university/veridia-university.component';
 import { AdmissionService } from './services/admission.service';
+import { ProgramDetailComponent } from './components/program-detail/program-detail.component';
+import { ScholarshipsComponent } from './components/scholarships/scholarships.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AdmissionService } from './services/admission.service';
     AdmissionFormComponent,
     AdminDashboardComponent,
     ChatbotPlaceholderComponent,
-    VeridiaUniversityComponent
+    VeridiaUniversityComponent,
+    ProgramDetailComponent,
+    ScholarshipsComponent
   ],
   imports: [
     BrowserModule,

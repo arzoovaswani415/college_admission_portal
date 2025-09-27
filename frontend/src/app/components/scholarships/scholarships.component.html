@@ -1,0 +1,248 @@
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+  <p>Loading scholarships...</p>
+</div>
+
+<!-- Scholarships Content -->
+<div class="scholarships-container" *ngIf="!isLoading">
+  <!-- Header Section -->
+  <section class="scholarships-header">
+    <div class="header-content">
+      <h1 class="page-title">Scholarships & Financial Aid</h1>
+      <p class="page-subtitle">
+        Verdia University is committed to making quality education accessible to all students. 
+        Explore our comprehensive range of scholarships and financial aid options designed to support your academic journey.
+      </p>
+      <div class="header-stats">
+        <div class="stat-item">
+          <div class="stat-number">$2M+</div>
+          <div class="stat-label">Total Aid Awarded</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">85%</div>
+          <div class="stat-label">Students Receive Aid</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Scholarship Types</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="filter-section">
+    <div class="filter-container">
+      <h2 class="filter-title">Filter by Type</h2>
+      <div class="filter-buttons">
+        <button 
+          *ngFor="let type of scholarshipTypes" 
+          [class]="'filter-button ' + (selectedType === type.value ? 'active' : '')"
+          (click)="filterByType(type.value)">
+          <mat-icon>{{ type.icon }}</mat-icon>
+          <span>{{ type.label }}</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scholarships Grid -->
+  <section class="scholarships-grid">
+    <div class="scholarships-list" *ngIf="filteredScholarships.length > 0">
+      <div 
+        *ngFor="let scholarship of filteredScholarships" 
+        class="scholarship-card"
+        [style.--type-color]="getScholarshipTypeColor(scholarship.type)">
+        
+        <!-- Scholarship Header -->
+        <div class="scholarship-header">
+          <div class="scholarship-type">
+            <mat-icon [style.color]="getScholarshipTypeColor(scholarship.type)">
+              {{ getScholarshipTypeIcon(scholarship.type) }}
+            </mat-icon>
+            <span class="type-label">{{ getScholarshipTypeLabel(scholarship.type) }}</span>
+          </div>
+          <div class="scholarship-amount">{{ scholarship.amount }}</div>
+        </div>
+
+        <!-- Scholarship Content -->
+        <div class="scholarship-content">
+          <h3 class="scholarship-title">{{ scholarship.title }}</h3>
+          <p class="scholarship-description">{{ scholarship.description }}</p>
+          
+          <!-- Eligibility Section -->
+          <div class="eligibility-section">
+            <h4 class="section-title">Eligibility Requirements</h4>
+            <ul class="eligibility-list">
+              <li *ngFor="let requirement of scholarship.eligibility" class="eligibility-item">
+                <mat-icon class="check-icon">check_circle</mat-icon>
+                <span>{{ requirement }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Application Requirements -->
+          <div class="requirements-section">
+            <h4 class="section-title">Application Requirements</h4>
+            <ul class="requirements-list">
+              <li *ngFor="let requirement of scholarship.requirements" class="requirement-item">
+                <mat-icon class="list-icon">radio_button_checked</mat-icon>
+                <span>{{ requirement }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Scholarship Footer -->
+          <div class="scholarship-footer">
+            <div class="deadline-info">
+              <mat-icon class="deadline-icon">schedule</mat-icon>
+              <span class="deadline-text">Application Deadline: {{ scholarship.applicationDeadline }}</span>
+            </div>
+            <div class="renewable-info" *ngIf="scholarship.renewable">
+              <mat-icon class="renewable-icon">refresh</mat-icon>
+              <span class="renewable-text">Renewable</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scholarship Actions -->
+        <div class="scholarship-actions">
+          <button mat-raised-button color="primary" (click)="navigateToApplication()" class="apply-button">
+            <mat-icon>school</mat-icon>
+            Apply for Scholarship
+          </button>
+          <button mat-button class="info-button">
+            <mat-icon>info</mat-icon>
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="filteredScholarships.length === 0">
+      <mat-icon class="no-results-icon">search_off</mat-icon>
+      <h3>No Scholarships Found</h3>
+      <p>No scholarships match your current filter. Try selecting a different type.</p>
+      <button mat-button (click)="filterByType('all')" class="reset-filter">
+        <mat-icon>refresh</mat-icon>
+        Show All Scholarships
+      </button>
+    </div>
+  </section>
+
+  <!-- Financial Aid Overview -->
+  <section class="financial-aid-overview">
+    <div class="overview-container">
+      <h2 class="overview-title">Financial Aid Overview</h2>
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="card-icon">
+            <mat-icon>account_balance</mat-icon>
+          </div>
+          <h3 class="card-title">Federal Aid</h3>
+          <p class="card-description">
+            Complete your FAFSA to be considered for federal grants, loans, and work-study programs.
+          </p>
+          <ul class="card-list">
+            <li>Pell Grants</li>
+            <li>Federal Student Loans</li>
+            <li>Work-Study Programs</li>
+            <li>State Grants</li>
+          </ul>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">
+            <mat-icon>school</mat-icon>
+          </div>
+          <h3 class="card-title">Institutional Aid</h3>
+          <p class="card-description">
+            Verdia University offers various institutional scholarships and grants to qualified students.
+          </p>
+          <ul class="card-list">
+            <li>Merit Scholarships</li>
+            <li>Need-Based Grants</li>
+            <li>Departmental Awards</li>
+            <li>Special Programs</li>
+          </ul>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">
+            <mat-icon>groups</mat-icon>
+          </div>
+          <h3 class="card-title">External Scholarships</h3>
+          <p class="card-description">
+            Explore external scholarship opportunities from organizations and foundations.
+          </p>
+          <ul class="card-list">
+            <li>Private Foundations</li>
+            <li>Corporate Scholarships</li>
+            <li>Community Organizations</li>
+            <li>Professional Associations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Process -->
+  <section class="application-process">
+    <div class="process-container">
+      <h2 class="process-title">How to Apply for Financial Aid</h2>
+      <div class="process-steps">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Complete FAFSA</h4>
+            <p>Fill out the Free Application for Federal Student Aid (FAFSA) to determine your eligibility for federal aid.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Apply for Scholarships</h4>
+            <p>Submit applications for institutional and external scholarships that match your qualifications.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Review Award Letter</h4>
+            <p>Receive and review your financial aid award letter detailing all available assistance.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Accept or Decline</h4>
+            <p>Accept the financial aid offers you wish to receive and complete any required documentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Apply for Financial Aid?</h2>
+      <p class="cta-description">
+        Don't let financial concerns prevent you from pursuing your education. 
+        Start your financial aid application today and discover the opportunities available to you.
+      </p>
+      <div class="cta-actions">
+        <button mat-raised-button color="primary" (click)="navigateToApplication()" class="cta-button">
+          <mat-icon>arrow_forward</mat-icon>
+          Start Financial Aid Application
+        </button>
+        <button mat-button class="secondary-button">
+          <mat-icon>download</mat-icon>
+          Download Financial Aid Guide
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

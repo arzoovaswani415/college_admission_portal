@@ -1,7 +1,36 @@
 <div class="admin-dashboard">
   <div class="dashboard-header">
-    <h1>Admin Dashboard</h1>
-    <p>Manage college admission applications</p>
+    <h1 class="dashboard-title">Verdia University Admin Dashboard</h1>
+    <p class="dashboard-subtitle">Manage admissions and view student applications</p>
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <mat-icon>people</mat-icon>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number">{{ dataSource.data.length }}</div>
+          <div class="stat-label">Total Applications</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <mat-icon>pending</mat-icon>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number">{{ getPendingCount() }}</div>
+          <div class="stat-label">Pending Review</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number">{{ getApprovedCount() }}</div>
+          <div class="stat-label">Approved</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Statistics Cards -->

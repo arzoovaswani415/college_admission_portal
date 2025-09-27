@@ -3,7 +3,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global Styles for College Admission Portal */
+/* Verdia University - Global Design System */
+
+/* CSS Custom Properties */
+:root {
+  /* Primary Colors - Deep Navy and Gold */
+  --primary-navy: #1a365d;
+  --primary-gold: #d4af37;
+  --primary-light: #2d5a87;
+  --primary-dark: #0f2438;
+  
+  /* Secondary Colors */
+  --secondary-green: #2d5016;
+  --secondary-light-green: #4a7c59;
+  --accent-blue: #3182ce;
+  --accent-light-blue: #63b3ed;
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --gray-50: #f7fafc;
+  --gray-100: #edf2f7;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e0;
+  --gray-400: #a0aec0;
+  --gray-500: #718096;
+  --gray-600: #4a5568;
+  --gray-700: #2d3748;
+  --gray-800: #1a202c;
+  --gray-900: #171923;
+  
+  /* Typography */
+  --font-primary: 'Roboto', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Roboto Slab', 'Merriweather', serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Global Styles for Verdia University */
 
 /* Reset and Base Styles */
 * {
