@@ -1,106 +1,125 @@
 <div class="chatbot-container">
+  <!-- Header -->
   <div class="chatbot-header">
-    <h1>Verdia University AI Assistant</h1>
-    <p>Your intelligent admission helper for Verdia University</p>
-  </div>
-
-  <div class="status-section">
-    <mat-card class="status-card">
-      <mat-card-content>
-        <div class="status-content">
-          <mat-icon class="status-icon">smart_toy</mat-icon>
-          <div class="status-info">
-            <h3>Chatbot Status</h3>
-            <p class="status-text">{{ chatbotStatus }}</p>
-            <button mat-raised-button color="primary" (click)="checkChatbotStatus()" 
-                    [disabled]="isCheckingStatus">
-              <mat-spinner *ngIf="isCheckingStatus" diameter="20"></mat-spinner>
-              <mat-icon *ngIf="!isCheckingStatus">refresh</mat-icon>
-              <span *ngIf="!isCheckingStatus">Check Status</span>
-              <span *ngIf="isCheckingStatus">Checking...</span>
-            </button>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="features-section">
-    <h2>Planned Chatbot Features</h2>
-    <div class="features-grid">
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>quiz</mat-icon>
-          <mat-card-title>Admission Queries</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Answer questions about admission requirements, deadlines, and procedures.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>school</mat-icon>
-          <mat-card-title>Course Information</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Provide detailed information about available courses and programs.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>support_agent</mat-icon>
-          <mat-card-title>24/7 Support</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Round-the-clock assistance for prospective students and applicants.</p>
-        </mat-card-content>
-      </mat-card>
-
-      <mat-card class="feature-card">
-        <mat-card-header>
-          <mat-icon mat-card-avatar>psychology</mat-icon>
-          <mat-card-title>AI-Powered</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>Advanced AI technology for natural language understanding and responses.</p>
-        </mat-card-content>
-      </mat-card>
+    <div class="header-content">
+      <h1>Verdia University AI Assistant</h1>
+      <p>Your intelligent admission helper</p>
+    </div>
+    <div class="header-actions" *ngIf="!isAuthenticated">
+      <button mat-raised-button color="primary" (click)="goToAuth()">
+        <mat-icon>login</mat-icon>
+        Login / Sign Up
+      </button>
+    </div>
+    <div class="header-actions" *ngIf="isAuthenticated">
+      <span class="user-info">Welcome, {{ currentUser?.firstName }}</span>
+      <button mat-icon-button (click)="logout()" matTooltip="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
     </div>
   </div>
 
-
-  <div class="demo-section">
-    <mat-card class="demo-card">
-      <mat-card-content>
-        <h2>Try the Demo</h2>
-        <p>Experience a preview of what the chatbot will offer:</p>
-        <div class="demo-chat">
-          <div class="chat-message bot-message">
-            <mat-icon class="message-icon">smart_toy</mat-icon>
-            <div class="message-content">
-              <p>Hello! I'm your AI admission assistant. How can I help you today?</p>
-            </div>
+  <!-- Chat Interface -->
+  <div class="chat-interface" *ngIf="isAuthenticated">
+    <!-- Messages Area -->
+    <div class="messages-container" #messagesContainer>
+      <!-- Scroll to bottom button -->
+      <button *ngIf="showScrollButton" 
+              mat-fab 
+              color="primary" 
+              class="scroll-to-bottom-btn"
+              (click)="scrollToBottom()"
+              matTooltip="Scroll to bottom">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      
+      <div class="messages-list">
+        <div *ngFor="let message of messages" 
+             class="message" 
+             [ngClass]="message.messageType === 'user' ? 'user-message' : 'assistant-message'">
+          
+          <div class="message-avatar">
+            <mat-icon *ngIf="message.messageType === 'assistant'">smart_toy</mat-icon>
+            <mat-icon *ngIf="message.messageType === 'user'">person</mat-icon>
           </div>
-          <div class="chat-message user-message">
-            <div class="message-content">
-              <p>What are the admission requirements?</p>
-            </div>
-            <mat-icon class="message-icon">person</mat-icon>
-          </div>
-          <div class="chat-message bot-message">
-            <mat-icon class="message-icon">smart_toy</mat-icon>
-            <div class="message-content">
-              <p>Our admission requirements include: High school diploma or equivalent, minimum GPA of 2.5, completed application form, and application fee. Would you like more details about any specific requirement?</p>
+          
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text" [innerHTML]="formatMessage(message.messageType === 'user' ? message.message : message.response)"></div>
+              <span class="message-time">{{ formatTime(message.timestamp) }}</span>
             </div>
           </div>
         </div>
-        <button mat-raised-button color="accent" (click)="onChatbotClick()" class="demo-button">
-          <mat-icon>chat</mat-icon>
-          Start Chat Demo
+
+        <!-- Typing indicator -->
+        <div class="message assistant-message" *ngIf="isTyping">
+          <div class="message-avatar">
+            <mat-icon>smart_toy</mat-icon>
+          </div>
+          <div class="message-content">
+            <div class="message-bubble typing-bubble">
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-area">
+      <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+        <mat-form-field appearance="outline" class="message-input">
+          <input matInput 
+                 [(ngModel)]="currentMessage" 
+                 name="message"
+                 placeholder="Ask me about admissions, programs, or anything else..."
+                 [disabled]="isLoading"
+                 (keydown.enter)="sendMessage()">
+        </mat-form-field>
+        <button mat-fab 
+                color="primary" 
+                type="submit"
+                [disabled]="!currentMessage.trim() || isLoading"
+                class="send-button">
+          <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+          <mat-icon *ngIf="!isLoading">send</mat-icon>
         </button>
-      </mat-card-content>
-    </mat-card>
+      </form>
+    </div>
+
+    <!-- Clear Chat Button -->
+    <div class="chat-actions">
+      <button mat-button color="warn" (click)="clearChat()">
+        <mat-icon>clear_all</mat-icon>
+        Clear Chat
+      </button>
+    </div>
+  </div>
+
+  <!-- Not Authenticated Message -->
+  <div class="not-authenticated" *ngIf="!isAuthenticated">
+    <div class="auth-message">
+      <mat-icon class="auth-icon">login</mat-icon>
+      <h2>Please Login to Chat</h2>
+      <p>You need to be logged in to use the AI assistant. Sign up or login to get started.</p>
+      <button mat-raised-button color="primary" (click)="goToAuth()">
+        <mat-icon>login</mat-icon>
+        Login / Sign Up
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="chatbot-footer">
+    <p>&copy; 2024 Verdia University. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="/home">Home</a>
+      <a href="/veridia">About</a>
+      <a href="/scholarships">Scholarships</a>
+    </div>
   </div>
 </div>

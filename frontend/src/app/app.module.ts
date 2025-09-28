@@ -4,6 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+// CDK Modules - Required for overlays and interactions
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
+import { A11yModule } from '@angular/cdk/a11y';
+import { BidiModule } from '@angular/cdk/bidi';
+import { ObserversModule } from '@angular/cdk/observers';
+
 // Angular Material Modules
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,6 +47,11 @@ import { VeridiaUniversityComponent } from './components/veridia-university/veri
 import { AdmissionService } from './services/admission.service';
 import { ProgramDetailComponent } from './components/program-detail/program-detail.component';
 import { ScholarshipsComponent } from './components/scholarships/scholarships.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { SignupDialogComponent } from './components/signup-dialog/signup-dialog.component';
+import { AuthService } from './services/auth.service';
+import { ChatbotService } from './services/chatbot.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +62,10 @@ import { ScholarshipsComponent } from './components/scholarships/scholarships.co
     ChatbotPlaceholderComponent,
     VeridiaUniversityComponent,
     ProgramDetailComponent,
-    ScholarshipsComponent
+    ScholarshipsComponent,
+    AuthComponent,
+    LoginDialogComponent,
+    SignupDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +74,13 @@ import { ScholarshipsComponent } from './components/scholarships/scholarships.co
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    // CDK Modules - Required for proper overlay functionality
+    OverlayModule,
+    PortalModule,
+    A11yModule,
+    BidiModule,
+    ObserversModule,
+    // Angular Material Modules
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
@@ -84,7 +106,7 @@ import { ScholarshipsComponent } from './components/scholarships/scholarships.co
     MatMenuModule,
     MatTooltipModule
   ],
-  providers: [AdmissionService],
+  providers: [AdmissionService, AuthService, ChatbotService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

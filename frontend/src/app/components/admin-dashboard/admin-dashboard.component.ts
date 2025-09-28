@@ -178,4 +178,13 @@ export class AdminDashboardComponent implements OnInit {
       admission.status === 'Accepted'
     ).length;
   }
+
+  onSelectOpened(opened: boolean): void {
+    // Handle select dropdown open/close events
+    if (opened) {
+      console.log('Select dropdown opened');
+    } else {
+      console.log('Select dropdown closed');
+    }
+  }
 }

@@ -99,6 +99,23 @@
   z-index: 1000;
 }
 
+/* Ensure CDK overlays work properly */
+.cdk-overlay-connected-position-bounding-box {
+  pointer-events: auto !important;
+}
+
+.cdk-overlay-pane .mat-select-panel {
+  pointer-events: auto !important;
+}
+
+.cdk-overlay-pane .mat-menu-panel {
+  pointer-events: auto !important;
+}
+
+.cdk-overlay-pane .mat-datepicker-popup {
+  pointer-events: auto !important;
+}
+
 /* Reset and Base Styles */
 * {
   margin: 0;
@@ -291,11 +308,190 @@ body {
 /* Custom Select Styles */
 .mat-select {
   border-radius: 8px !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix mat-select click issues globally */
+::ng-deep .mat-select {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-trigger {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-value {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-arrow {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-panel {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+}
+
+::ng-deep .mat-option {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-panel-wrap {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
 }
 
 /* Custom Datepicker Styles */
 .mat-datepicker-toggle {
   border-radius: 4px !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix mat-menu click issues */
+::ng-deep .mat-menu-trigger {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-menu-panel {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+}
+
+::ng-deep .mat-menu-item {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-menu-content {
+  pointer-events: auto !important;
+}
+
+/* Fix date picker click issues */
+::ng-deep .mat-datepicker-toggle {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-datepicker-toggle .mat-icon-button {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Aggressive fix for all interactive elements - Global scope */
+mat-select,
+.mat-select,
+.mat-select-trigger,
+.mat-select-value,
+.mat-select-arrow,
+mat-datepicker-toggle,
+.mat-datepicker-toggle,
+.mat-menu-trigger,
+.mat-menu-item,
+.user-menu-btn,
+::ng-deep mat-select,
+::ng-deep .mat-select,
+::ng-deep .mat-select-trigger,
+::ng-deep .mat-select-value,
+::ng-deep .mat-select-arrow,
+::ng-deep mat-datepicker-toggle,
+::ng-deep .mat-datepicker-toggle,
+::ng-deep .mat-menu-trigger,
+::ng-deep .mat-menu-item,
+::ng-deep .user-menu-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Ensure all overlays are clickable */
+::ng-deep .cdk-overlay-pane * {
+  pointer-events: auto !important;
+}
+
+/* Specific fix for mat-option elements - AGGRESSIVE */
+.mat-option,
+.mat-option.mat-active,
+.mat-option.mat-selected,
+.mat-option:hover,
+.mat-option:focus,
+::ng-deep .mat-option,
+::ng-deep .mat-option.mat-active,
+::ng-deep .mat-option.mat-selected,
+::ng-deep .mat-option:hover,
+::ng-deep .mat-option:focus {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Fix for mat-option text content - AGGRESSIVE */
+.mat-option .mat-option-text,
+.mat-option .mat-option-text:hover,
+::ng-deep .mat-option .mat-option-text,
+::ng-deep .mat-option .mat-option-text:hover {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure mat-option ripple effects work */
+.mat-option .mat-ripple,
+::ng-deep .mat-option .mat-ripple {
+  pointer-events: auto !important;
+}
+
+/* Force cursor on all mat-option children */
+.mat-option *,
+::ng-deep .mat-option * {
+  cursor: pointer !important;
+}
+
+/* Specific fix for mat-option wrapper */
+.mat-option-wrapper,
+::ng-deep .mat-option-wrapper {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix for any potential touch-action issues */
+::ng-deep mat-select,
+::ng-deep .mat-select,
+::ng-deep mat-datepicker-toggle,
+::ng-deep .mat-datepicker-toggle,
+::ng-deep .mat-menu-trigger {
+  touch-action: manipulation !important;
+}
+
+/* ULTRA AGGRESSIVE - Force cursor pointer on all mat-option related elements */
+body .mat-option,
+body .mat-option *,
+body .mat-option-wrapper,
+body .mat-option-wrapper *,
+::ng-deep body .mat-option,
+::ng-deep body .mat-option *,
+::ng-deep body .mat-option-wrapper,
+::ng-deep body .mat-option-wrapper * {
+  cursor: pointer !important;
+}
+
+/* Force cursor on any element that contains mat-option text */
+[class*="mat-option"],
+[class*="mat-option"] * {
+  cursor: pointer !important;
 }
 
 /* Custom Autocomplete Styles */
@@ -410,3 +606,5 @@ body {
     border: 1px solid #e0e0e0 !important;
   }
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

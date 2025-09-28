@@ -1,0 +1,48 @@
+<div class="login-dialog">
+  <div class="dialog-header">
+    <h2>Login to Verdia University</h2>
+    <p>Sign in to your account</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Enter your email">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        {{ getErrorMessage('email') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Enter your password">
+      <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        {{ getErrorMessage('password') }}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="dialog-actions">
+      <button mat-button type="button" (click)="onCancel()" [disabled]="isLoading">
+        Cancel
+      </button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        <mat-icon *ngIf="!isLoading">login</mat-icon>
+        <span *ngIf="!isLoading">Login</span>
+        <span *ngIf="isLoading">Logging in...</span>
+      </button>
+    </div>
+  </form>
+
+  <div class="demo-credentials">
+    <p><strong>Admin Credentials:</strong></p>
+    <p><strong>Email:</strong> admin@verdia.edu</p>
+    <p><strong>Password:</strong> admin123</p>
+    <hr>
+    <p><em>Regular users can sign up with their own credentials</em></p>
+  </div>
+</div>

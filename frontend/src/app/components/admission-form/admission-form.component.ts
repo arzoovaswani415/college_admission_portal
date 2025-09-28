@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdmissionService, Admission } from '../../services/admission.service';
@@ -8,7 +8,7 @@ import { AdmissionService, Admission } from '../../services/admission.service';
   templateUrl: './admission-form.component.html',
   styleUrls: ['./admission-form.component.css']
 })
-export class AdmissionFormComponent implements OnInit {
+export class AdmissionFormComponent implements OnInit, AfterViewInit {
   admissionForm: FormGroup;
   isSubmitting = false;
   courses = [
@@ -29,6 +29,132 @@ export class AdmissionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    // Force enable click events on mat-select elements
+    setTimeout(() => {
+      this.enableSelectClicks();
+    }, 100);
+
+    // Set up periodic checks to ensure clicks work
+    setInterval(() => {
+      this.enableSelectClicks();
+    }, 2000);
+
+    // Watch for new mat-option elements being added to DOM
+    this.setupMutationObserver();
+  }
+
+  private setupMutationObserver(): void {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const element = node as Element;
+              // Check if it's a mat-option or contains mat-options
+              if (element.classList.contains('mat-option')) {
+                this.fixMatOption(element as HTMLElement);
+              }
+              // Check for mat-options within the added element
+              const matOptions = element.querySelectorAll('.mat-option');
+              matOptions.forEach(option => this.fixMatOption(option as HTMLElement));
+            }
+          });
+        }
+      });
+    });
+
+    // Start observing
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  private fixMatOption(element: HTMLElement): void {
+    element.style.pointerEvents = 'auto';
+    element.style.cursor = 'pointer';
+    element.style.userSelect = 'none';
+    
+    // Fix all children elements
+    const allChildren = element.querySelectorAll('*');
+    allChildren.forEach(child => {
+      const childElement = child as HTMLElement;
+      childElement.style.cursor = 'pointer';
+      childElement.style.pointerEvents = 'auto';
+    });
+    
+    const optionText = element.querySelector('.mat-option-text') as HTMLElement;
+    if (optionText) {
+      optionText.style.pointerEvents = 'auto';
+      optionText.style.cursor = 'pointer';
+    }
+  }
+
+  private enableSelectClicks(): void {
+    // Find all mat-select elements and ensure they're clickable
+    const selectElements = document.querySelectorAll('mat-select');
+    selectElements.forEach(select => {
+      const element = select as HTMLElement;
+      element.style.pointerEvents = 'auto';
+      element.style.cursor = 'pointer';
+      
+      // Also fix the trigger element
+      const trigger = element.querySelector('.mat-select-trigger') as HTMLElement;
+      if (trigger) {
+        trigger.style.pointerEvents = 'auto';
+        trigger.style.cursor = 'pointer';
+      }
+    });
+
+    // Fix mat-option elements specifically
+    const optionElements = document.querySelectorAll('.mat-option');
+    optionElements.forEach(option => {
+      const element = option as HTMLElement;
+      element.style.pointerEvents = 'auto';
+      element.style.cursor = 'pointer';
+      element.style.userSelect = 'none';
+      
+      // Fix all children elements
+      const allChildren = element.querySelectorAll('*');
+      allChildren.forEach(child => {
+        const childElement = child as HTMLElement;
+        childElement.style.cursor = 'pointer';
+        childElement.style.pointerEvents = 'auto';
+      });
+      
+      // Fix option text content
+      const optionText = element.querySelector('.mat-option-text') as HTMLElement;
+      if (optionText) {
+        optionText.style.pointerEvents = 'auto';
+        optionText.style.cursor = 'pointer';
+      }
+    });
+
+    // Fix date picker toggles
+    const datePickerToggles = document.querySelectorAll('mat-datepicker-toggle');
+    datePickerToggles.forEach(toggle => {
+      const element = toggle as HTMLElement;
+      element.style.pointerEvents = 'auto';
+      element.style.cursor = 'pointer';
+    });
+
+    // Also ensure global menu elements remain clickable
+    const menuButtons = document.querySelectorAll('.user-menu-btn');
+    menuButtons.forEach(button => {
+      const element = button as HTMLElement;
+      element.style.pointerEvents = 'auto';
+      element.style.cursor = 'pointer';
+    });
+
+    const menuItems = document.querySelectorAll('mat-menu-item');
+    menuItems.forEach(item => {
+      const element = item as HTMLElement;
+      element.style.pointerEvents = 'auto';
+      element.style.cursor = 'pointer';
+    });
   }
 
   createForm(): FormGroup {
@@ -189,5 +315,14 @@ export class AdmissionFormComponent implements OnInit {
     if (this.admissionForm.get('academicInfo')?.valid) completedSections++;
     
     return (completedSections / totalSections) * 100;
+  }
+
+  onSelectOpened(opened: boolean): void {
+    // Handle select dropdown open/close events
+    if (opened) {
+      console.log('Select dropdown opened');
+    } else {
+      console.log('Select dropdown closed');
+    }
   }
 }

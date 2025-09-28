@@ -9,81 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-content-light dark:text-content-dark">
+<body class=" dark:bg-background-dark font-display text-content-light dark:text-content-dark">
 <div class="flex flex-col min-h-screen">
-  <!-- Header -->
-  <header class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 border-b border-gray-200 dark:border-content-dark/10">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <div class="flex items-center gap-3">
-          <div class="text-primary">
-            <svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_6_535)">
-                <path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_6_535">
-                  <rect fill="white" height="48" width="48"></rect>
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold">Veridia University</h2>
-        </div>
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-8">
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer" 
-             (click)="scrollToSection('about')">About</a>
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer" 
-             (click)="scrollToSection('alumni')">Alumni</a>
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Admissions</a>
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Campus Life</a>
-          <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Contact</a>
-        </nav>
-
-        <!-- Action Buttons -->
-        <div class="flex items-center gap-2">
-          <!-- Dark Mode Toggle -->
-          <button (click)="toggleDarkMode()" 
-                  class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  [attr.aria-label]="isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'">
-            <span class="material-symbols-outlined text-lg">
-              {{ isDarkMode ? 'light_mode' : 'dark_mode' }}
-            </span>
-          </button>
-          
-          <a class="px-4 py-2 text-sm font-bold rounded-lg bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 transition-colors" href="#">Login</a>
-          <a class="px-4 py-2 text-sm font-bold rounded-lg bg-primary text-white hover:opacity-90 transition-opacity" href="#">Apply Now</a>
-          
-          <!-- Mobile Menu Button -->
-          <button (click)="toggleMobileMenu()" 
-                  class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'">
-            <span class="material-symbols-outlined text-lg">
-              {{ isMobileMenuOpen ? 'close' : 'menu' }}
-            </span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation -->
-      <div class="md:hidden" [class.hidden]="!isMobileMenuOpen">
-        <nav class="py-4 border-t border-gray-200 dark:border-content-dark/10">
-          <div class="flex flex-col space-y-2">
-            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer py-2" 
-               (click)="scrollToSection('about')">About</a>
-            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors cursor-pointer py-2" 
-               (click)="scrollToSection('alumni')">Alumni</a>
-            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Admissions</a>
-            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Campus Life</a>
-            <a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2" href="#">Contact</a>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </header>
+ 
 
   <!-- Main Content -->
   <main class="flex-grow">
@@ -134,9 +62,9 @@
     </section>
 
     <!-- Alumni Section -->
-    <section class="py-16 md:py-24 bg-background-light dark:bg-background-dark/50" id="alumni">
+    <section class="py-16 md:py-24 bg-background-dark dark:bg-background-dark/50" id="alumni">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
+        <div class="text-center mb-10">
           <h2 class="text-3xl font-bold tracking-tight">Our Alumni</h2>
           <p class="mt-2 text-content-light/80 dark:text-content-dark/80 max-w-3xl mx-auto">
             Veridia graduates are changing the world. Hear their stories and see the impact they are making in their fields.
@@ -178,19 +106,7 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-background-light dark:bg-background-dark border-t border-content-light/10 dark:border-content-dark/10">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
-          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Privacy Policy</a>
-          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Terms of Service</a>
-          <a class="text-sm text-content-light/80 dark:text-content-dark/80 hover:text-primary transition-colors" href="#">Contact Us</a>
-        </div>
-        <p class="text-sm text-content-light/60 dark:text-content-dark/60">© 2024 Veridia University. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+
 </div>
 
 <!-- Chatbot Button -->

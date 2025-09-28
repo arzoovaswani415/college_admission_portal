@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 const admissionRoutes = require('./routes/admissions');
+const chatbotRoutes = require('./routes/chatbot');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +27,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/admissions', admissionRoutes);
+app.use('/api/chatbot', chatbotRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -35,12 +39,12 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Chatbot placeholder endpoint (for future implementation)
+// Chatbot status endpoint (legacy - now handled by chatbot routes)
 app.get('/api/chatbot/status', (req, res) => {
   res.json({
     success: true,
-    message: 'Chatbot service is ready for future implementation',
-    status: 'placeholder'
+    message: 'Chatbot service is ready and operational',
+    status: 'active'
   });
 });
 

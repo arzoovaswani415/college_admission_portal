@@ -1,0 +1,73 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Verdia University</h1>
+      <h2>{{ isLoginMode ? 'Welcome Back' : 'Join Verdia University' }}</h2>
+      <p>{{ isLoginMode ? 'Sign in to continue' : 'Create your account to get started' }}</p>
+    </div>
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <!-- Registration fields -->
+      <div *ngIf="!isLoginMode" class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter your first name">
+          <mat-error *ngIf="authForm.get('firstName')?.invalid && authForm.get('firstName')?.touched">
+            {{ getErrorMessage('firstName') }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter your last name">
+          <mat-error *ngIf="authForm.get('lastName')?.invalid && authForm.get('lastName')?.touched">
+            {{ getErrorMessage('lastName') }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Email field -->
+      <mat-form-field appearance="outline" class="form-field full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Enter your email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="authForm.get('email')?.invalid && authForm.get('email')?.touched">
+          {{ getErrorMessage('email') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password field -->
+      <mat-form-field appearance="outline" class="form-field full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="'password'" formControlName="password" placeholder="Enter your password">
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="authForm.get('password')?.invalid && authForm.get('password')?.touched">
+          {{ getErrorMessage('password') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit button -->
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit" 
+        class="submit-button"
+        [disabled]="authForm.invalid || isLoading">
+        <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        <mat-icon *ngIf="!isLoading">{{ isLoginMode ? 'login' : 'person_add' }}</mat-icon>
+        <span *ngIf="!isLoading">{{ isLoginMode ? 'Sign In' : 'Sign Up' }}</span>
+        <span *ngIf="isLoading">Please wait...</span>
+      </button>
+
+      <!-- Toggle mode -->
+      <div class="toggle-mode">
+        <p>
+          {{ isLoginMode ? "Don't have an account?" : "Already have an account?" }}
+          <button type="button" mat-button color="primary" (click)="toggleMode()">
+            {{ isLoginMode ? 'Sign Up' : 'Sign In' }}
+          </button>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

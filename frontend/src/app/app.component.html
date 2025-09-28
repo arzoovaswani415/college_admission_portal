@@ -19,10 +19,69 @@
         <a routerLink="/home" routerLinkActive="active" (click)="closeMobileMenu()">Home</a>
         <a routerLink="/apply" routerLinkActive="active" (click)="closeMobileMenu()">Apply Now</a>
         <a routerLink="/scholarships" routerLinkActive="active" (click)="closeMobileMenu()">Scholarships</a>
-        <a routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">Admin</a>
         <a routerLink="/chatbot" routerLinkActive="active" (click)="closeMobileMenu()">Chatbot</a>
         <a routerLink="/veridia" routerLinkActive="active" (click)="closeMobileMenu()">Veridia University</a>
+        
+        <!-- Admin only navigation -->
+        <a *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">Admin</a>
       </nav>
+
+      <!-- Authentication Section -->
+      <div class="auth-section" [class.mobile-open]="isMobileMenuOpen">
+        <!-- Not authenticated -->
+        <div *ngIf="!isAuthenticated" class="auth-buttons">
+          <button mat-button (click)="openLoginDialog()" class="auth-btn">
+            <mat-icon>login</mat-icon>
+            Login
+          </button>
+          <button mat-raised-button color="primary" (click)="openSignupDialog()" class="auth-btn">
+            <mat-icon>person_add</mat-icon>
+            Sign Up
+          </button>
+        </div>
+
+        <!-- Authenticated user -->
+        <div *ngIf="isAuthenticated" class="user-section">
+          <div class="user-menu">
+            <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-btn" (click)="$event.stopPropagation()">
+              <div class="user-avatar">
+                <span>{{ getUserInitials() }}</span>
+              </div>
+            </button>
+            <mat-menu #userMenu="matMenu">
+              <div class="menu-header">
+                <div class="menu-user-info">
+                  <div class="menu-user-avatar">
+                    <span>{{ getUserInitials() }}</span>
+                  </div>
+                  <div class="menu-user-details">
+                    <span class="menu-user-name">{{ getUserDisplayName() }}</span>
+                    <span class="menu-user-role">{{ currentUser?.role | titlecase }}</span>
+                  </div>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+              <button mat-menu-item routerLink="/apply" *ngIf="!isAdmin()" (click)="$event.stopPropagation()">
+                <mat-icon>school</mat-icon>
+                <span>My Applied Courses</span>
+              </button>
+              <button mat-menu-item routerLink="/chatbot" *ngIf="!isAdmin()" (click)="$event.stopPropagation()">
+                <mat-icon>chat</mat-icon>
+                <span>Inquiry</span>
+              </button>
+              <button mat-menu-item routerLink="/admin" *ngIf="isAdmin()" (click)="$event.stopPropagation()">
+                <mat-icon>admin_panel_settings</mat-icon>
+                <span>Admin Dashboard</span>
+              </button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item (click)="logout($event)">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+      </div>
 
       <!-- Mobile Menu Button -->
       <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'">

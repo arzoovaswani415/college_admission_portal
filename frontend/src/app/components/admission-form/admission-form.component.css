@@ -265,6 +265,16 @@
   z-index: 9999 !important;
 }
 
+::ng-deep .mat-datepicker-toggle {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-datepicker-toggle .mat-icon-button {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
 ::ng-deep .cdk-overlay-container {
   z-index: 9999 !important;
 }
@@ -290,20 +300,119 @@
   overflow: visible !important;
 }
 
-/* Select Fields */
+/* Select Fields - Component specific but ensure global compatibility */
 ::ng-deep .mat-select {
   font-size: 1rem;
   color: var(--gray-800);
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-select-trigger {
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
 
 ::ng-deep .mat-select-value {
   color: var(--gray-800);
   font-size: 1rem;
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
 
 ::ng-deep .mat-select-placeholder {
   color: var(--gray-400);
   font-size: 1rem;
+}
+
+::ng-deep .mat-select-arrow {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure mat-select panel is clickable */
+::ng-deep .mat-select-panel {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+}
+
+::ng-deep .mat-option {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Specific fixes for mat-option elements in admission form - AGGRESSIVE */
+.mat-option,
+.mat-option.mat-active,
+.mat-option.mat-selected,
+.mat-option:hover,
+.mat-option:focus,
+::ng-deep .mat-option,
+::ng-deep .mat-option.mat-active,
+::ng-deep .mat-option.mat-selected,
+::ng-deep .mat-option:hover,
+::ng-deep .mat-option:focus {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Fix for mat-option text content - AGGRESSIVE */
+.mat-option .mat-option-text,
+.mat-option .mat-option-text:hover,
+::ng-deep .mat-option .mat-option-text,
+::ng-deep .mat-option .mat-option-text:hover {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Ensure mat-option ripple effects work */
+.mat-option .mat-ripple,
+::ng-deep .mat-option .mat-ripple {
+  pointer-events: auto !important;
+}
+
+/* Force cursor on all mat-option children */
+.mat-option *,
+::ng-deep .mat-option * {
+  cursor: pointer !important;
+}
+
+/* Specific fix for mat-option wrapper */
+.mat-option-wrapper,
+::ng-deep .mat-option-wrapper {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Fix for mat-select overlay */
+::ng-deep .mat-select-panel-wrap {
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+}
+
+/* Ensure global menu elements remain clickable even within this component */
+::ng-deep .user-menu-btn,
+::ng-deep .mat-menu-trigger,
+::ng-deep .mat-menu-item {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure stepper doesn't interfere with form interactions */
+::ng-deep .mat-stepper-horizontal {
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-step-header {
+  pointer-events: auto !important;
+}
+
+::ng-deep .mat-step-content {
+  pointer-events: auto !important;
 }
 
 /* Radio Buttons - Enhanced styling */
