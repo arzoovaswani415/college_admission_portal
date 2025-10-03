@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 const admissionRoutes = require('./routes/admissions');
+const chatbotRoutes = require('./routes/chatbot');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/admissions', admissionRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -32,15 +34,6 @@ app.get('/api/health', (req, res) => {
     success: true,
     message: 'College Admission API is running',
     timestamp: new Date().toISOString()
-  });
-});
-
-// Chatbot placeholder endpoint (for future implementation)
-app.get('/api/chatbot/status', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Chatbot service is ready for future implementation',
-    status: 'placeholder'
   });
 });
 
@@ -66,5 +59,5 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   console.log(`🎓 Admissions API: http://localhost:${PORT}/api/admissions`);
-  console.log(`🤖 Chatbot placeholder: http://localhost:${PORT}/api/chatbot/status`);
+  console.log(`🤖 Chatbot API: http://localhost:${PORT}/api/chatbot`);
 });

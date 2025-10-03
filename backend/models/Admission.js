@@ -79,10 +79,30 @@ const admissionSchema = new mongoose.Schema({
     }
   },
   documents: {
-    resume: String,
-    transcript: String,
-    recommendationLetter: String,
-    other: String
+    resume: {
+      name: String,
+      size: Number,
+      type: String,
+      uploaded: Boolean
+    },
+    transcript: {
+      name: String,
+      size: Number,
+      type: String,
+      uploaded: Boolean
+    },
+    recommendationLetter: {
+      name: String,
+      size: Number,
+      type: String,
+      uploaded: Boolean
+    },
+    other: {
+      name: String,
+      size: Number,
+      type: String,
+      uploaded: Boolean
+    }
   },
   status: {
     type: String,

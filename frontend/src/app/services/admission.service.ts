@@ -26,10 +26,30 @@ export interface Admission {
     gpa?: number;
   };
   documents?: {
-    resume?: string;
-    transcript?: string;
-    recommendationLetter?: string;
-    other?: string;
+    resume?: {
+      name: string;
+      size: number;
+      type: string;
+      uploaded: boolean;
+    } | null;
+    transcript?: {
+      name: string;
+      size: number;
+      type: string;
+      uploaded: boolean;
+    } | null;
+    recommendationLetter?: {
+      name: string;
+      size: number;
+      type: string;
+      uploaded: boolean;
+    } | null;
+    other?: {
+      name: string;
+      size: number;
+      type: string;
+      uploaded: boolean;
+    } | null;
   };
   status?: string;
   applicationDate?: Date;

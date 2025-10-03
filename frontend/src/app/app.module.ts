@@ -38,6 +38,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { ChatbotPlaceholderComponent } from './components/chatbot-placeholder/chatbot-placeholder.component';
 import { VeridiaUniversityComponent } from './components/veridia-university/veridia-university.component';
 import { AdmissionService } from './services/admission.service';
+import { ChatbotService } from './services/chatbot.service';
 import { ProgramDetailComponent } from './components/program-detail/program-detail.component';
 import { ScholarshipsComponent } from './components/scholarships/scholarships.component';
 
@@ -84,7 +85,7 @@ import { ScholarshipsComponent } from './components/scholarships/scholarships.co
     MatMenuModule,
     MatTooltipModule
   ],
-  providers: [AdmissionService],
+  providers: [AdmissionService, ChatbotService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

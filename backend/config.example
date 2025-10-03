@@ -1,0 +1,12 @@
+# Database Configuration
+MONGODB_URI=mongodb://localhost:27017/veridia_admissions
+
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
+# Google AI Configuration
+GOOGLE_API_KEY=your_google_api_key_here
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_here

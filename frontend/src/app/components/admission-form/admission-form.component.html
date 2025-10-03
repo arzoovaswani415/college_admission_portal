@@ -63,9 +63,17 @@
             <div class="form-row">
               <mat-form-field appearance="outline" class="form-field date-field">
                 <mat-label>Date of Birth *</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <input matInput 
+                       [matDatepicker]="picker" 
+                       formControlName="dateOfBirth"
+                       placeholder="Select your date of birth"
+                       readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="false"></mat-datepicker-toggle>
+                <mat-datepicker #picker 
+                                [touchUi]="false"
+                                [startView]="'multi-year'"
+                                [startAt]="startDate">
+                </mat-datepicker>
                 <mat-error *ngIf="isFieldInvalid('dateOfBirth', 'personalInfo')" class="error-message">
                   {{ getErrorMessage('dateOfBirth', 'personalInfo') }}
                 </mat-error>
@@ -250,29 +258,72 @@
           </div>
 
           <div class="form-section">
-            <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Resume/CV</mat-label>
-              <input matInput formControlName="resume" placeholder="Link to your resume or CV">
-              <mat-hint>Provide a link to your resume or CV (Google Drive, Dropbox, etc.)</mat-hint>
-            </mat-form-field>
+            <!-- Resume/CV Upload -->
+            <div class="upload-section">
+              <h3 class="upload-title">Resume/CV</h3>
+              <div class="file-upload-container">
+                <input type="file" #resumeInput (change)="onFileSelected($event, 'resume')" accept=".pdf,.doc,.docx" style="display: none;">
+                <button mat-raised-button color="primary" (click)="resumeInput.click()" class="upload-button">
+                  <mat-icon>cloud_upload</mat-icon>
+                  Browse Documents
+                </button>
+                <span class="file-name" *ngIf="uploadedFiles['resume']">{{ uploadedFiles['resume'].name }}</span>
+                <span class="upload-success" *ngIf="uploadedFiles['resume']">✓ Success</span>
+              </div>
+            </div>
 
-            <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Academic Transcript</mat-label>
-              <input matInput formControlName="transcript" placeholder="Link to your academic transcript">
-              <mat-hint>Provide a link to your most recent academic transcript</mat-hint>
-            </mat-form-field>
+            <!-- Academic Transcript Upload -->
+            <div class="upload-section">
+              <h3 class="upload-title">Academic Transcript</h3>
+              <div class="file-upload-container">
+                <input type="file" #transcriptInput (change)="onFileSelected($event, 'transcript')" accept=".pdf,.doc,.docx" style="display: none;">
+                <button mat-raised-button color="primary" (click)="transcriptInput.click()" class="upload-button">
+                  <mat-icon>cloud_upload</mat-icon>
+                  Browse Documents
+                </button>
+                <span class="file-name" *ngIf="uploadedFiles['transcript']">{{ uploadedFiles['transcript'].name }}</span>
+                <span class="upload-success" *ngIf="uploadedFiles['transcript']">✓ Success</span>
+              </div>
+            </div>
 
-            <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Recommendation Letter</mat-label>
-              <input matInput formControlName="recommendationLetter" placeholder="Link to recommendation letter">
-              <mat-hint>Provide a link to your recommendation letter(s)</mat-hint>
-            </mat-form-field>
+            <!-- Recommendation Letter Upload -->
+            <div class="upload-section">
+              <h3 class="upload-title">Recommendation Letter</h3>
+              <div class="file-upload-container">
+                <input type="file" #recommendationInput (change)="onFileSelected($event, 'recommendationLetter')" accept=".pdf,.doc,.docx" style="display: none;">
+                <button mat-raised-button color="primary" (click)="recommendationInput.click()" class="upload-button">
+                  <mat-icon>cloud_upload</mat-icon>
+                  Browse Documents
+                </button>
+                <span class="file-name" *ngIf="uploadedFiles['recommendationLetter']">{{ uploadedFiles['recommendationLetter'].name }}</span>
+                <span class="upload-success" *ngIf="uploadedFiles['recommendationLetter']">✓ Success</span>
+              </div>
+            </div>
 
-            <mat-form-field appearance="outline" class="form-field full-width">
-              <mat-label>Other Supporting Documents</mat-label>
-              <input matInput formControlName="other" placeholder="Link to other supporting documents">
-              <mat-hint>Provide links to any other relevant documents (portfolio, certificates, etc.)</mat-hint>
-            </mat-form-field>
+            <!-- Other Documents Upload -->
+            <div class="upload-section">
+              <h3 class="upload-title">Other Supporting Documents</h3>
+              <div class="file-upload-container">
+                <input type="file" #otherInput (change)="onFileSelected($event, 'other')" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display: none;">
+                <button mat-raised-button color="primary" (click)="otherInput.click()" class="upload-button">
+                  <mat-icon>cloud_upload</mat-icon>
+                  Browse Documents
+                </button>
+                <span class="file-name" *ngIf="uploadedFiles['other']">{{ uploadedFiles['other'].name }}</span>
+                <span class="upload-success" *ngIf="uploadedFiles['other']">✓ Success</span>
+              </div>
+            </div>
+
+            <!-- Document Upload Summary -->
+            <div class="upload-summary" *ngIf="getUploadedFilesCount() > 0">
+              <h4>Uploaded Documents ({{ getUploadedFilesCount() }})</h4>
+              <ul>
+                <li *ngIf="uploadedFiles['resume']">✓ Resume/CV: {{ uploadedFiles['resume'].name }}</li>
+                <li *ngIf="uploadedFiles['transcript']">✓ Academic Transcript: {{ uploadedFiles['transcript'].name }}</li>
+                <li *ngIf="uploadedFiles['recommendationLetter']">✓ Recommendation Letter: {{ uploadedFiles['recommendationLetter'].name }}</li>
+                <li *ngIf="uploadedFiles['other']">✓ Other Documents: {{ uploadedFiles['other'].name }}</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -379,6 +430,67 @@
                 </div>
               </div>
             </div>
+
+            <!-- Documents Review Section -->
+            <div class="review-section" *ngIf="getUploadedFilesCount() > 0">
+              <h3 class="review-title">
+                <mat-icon>attach_file</mat-icon>
+                Uploaded Documents ({{ getUploadedFilesCount() }})
+              </h3>
+              <div class="review-content">
+                <div class="review-item" *ngIf="uploadedFiles['resume']">
+                  <span class="review-label">Resume/CV:</span>
+                  <span class="review-value">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    {{ uploadedFiles['resume'].name }} 
+                    <span class="file-size">({{ formatFileSize(uploadedFiles['resume'].size) }})</span>
+                    <span class="upload-status success">✓ Uploaded</span>
+                  </span>
+                </div>
+                <div class="review-item" *ngIf="uploadedFiles['transcript']">
+                  <span class="review-label">Academic Transcript:</span>
+                  <span class="review-value">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    {{ uploadedFiles['transcript'].name }} 
+                    <span class="file-size">({{ formatFileSize(uploadedFiles['transcript'].size) }})</span>
+                    <span class="upload-status success">✓ Uploaded</span>
+                  </span>
+                </div>
+                <div class="review-item" *ngIf="uploadedFiles['recommendationLetter']">
+                  <span class="review-label">Recommendation Letter:</span>
+                  <span class="review-value">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    {{ uploadedFiles['recommendationLetter'].name }} 
+                    <span class="file-size">({{ formatFileSize(uploadedFiles['recommendationLetter'].size) }})</span>
+                    <span class="upload-status success">✓ Uploaded</span>
+                  </span>
+                </div>
+                <div class="review-item" *ngIf="uploadedFiles['other']">
+                  <span class="review-label">Other Documents:</span>
+                  <span class="review-value">
+                    <mat-icon class="file-icon">description</mat-icon>
+                    {{ uploadedFiles['other'].name }} 
+                    <span class="file-size">({{ formatFileSize(uploadedFiles['other'].size) }})</span>
+                    <span class="upload-status success">✓ Uploaded</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- No Documents Message -->
+            <div class="review-section" *ngIf="getUploadedFilesCount() === 0">
+              <h3 class="review-title">
+                <mat-icon>attach_file</mat-icon>
+                Supporting Documents
+              </h3>
+              <div class="review-content">
+                <div class="no-documents">
+                  <mat-icon class="no-docs-icon">cloud_upload</mat-icon>
+                  <p>No documents uploaded</p>
+                  <small>Documents are optional but recommended for a stronger application</small>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -387,9 +499,10 @@
             <mat-icon>arrow_back</mat-icon>
             Back
           </button>
-          <button mat-raised-button color="primary" type="submit" 
+          <button mat-raised-button color="primary" 
                   class="submit-button"
-                  [disabled]="isSubmitting || admissionForm.invalid">
+                  (click)="onSubmit()"
+                  [disabled]="isSubmitting">
             <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
             <mat-icon *ngIf="!isSubmitting">send</mat-icon>
             <span *ngIf="!isSubmitting">Submit Application</span>
