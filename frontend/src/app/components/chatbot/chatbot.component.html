@@ -1,0 +1,55 @@
+<!-- Chatbot Toggle Button -->
+<div class="chatbot-toggle" (click)="toggleChat()" [class.open]="isOpen">
+  <i class="fas fa-comments"></i>
+  <span class="chatbot-label">TSEC Assistant</span>
+</div>
+
+<!-- Chatbot Window -->
+<div class="chatbot-window" [class.open]="isOpen">
+  <div class="chatbot-header">
+    <h3>TSEC Admit Assist</h3>
+    <button class="close-btn" (click)="toggleChat()">&times;</button>
+  </div>
+  
+  <div class="chatbot-messages" #messageContainer>
+    <div 
+      *ngFor="let message of messages" 
+      class="message"
+      [class.user]="message.isUser"
+      [class.assistant]="!message.isUser"
+    >
+      <div class="message-content">
+        <div class="message-text" [innerHTML]="message.text"></div>
+        <div class="message-time">{{ message.timestamp | date:'short' }}</div>
+      </div>
+    </div>
+    
+    <div *ngIf="isLoading" class="message assistant">
+      <div class="message-content">
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="chatbot-input">
+    <textarea 
+      [(ngModel)]="newMessage"
+      (keypress)="onKeyPress($event)"
+      placeholder="Ask about TSEC admissions..."
+      rows="1"
+      [disabled]="isLoading"
+    ></textarea>
+    <button 
+      (click)="sendMessage()" 
+      [disabled]="!newMessage.trim() || isLoading"
+      class="send-btn"
+    >
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
+

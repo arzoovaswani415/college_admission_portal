@@ -225,16 +225,22 @@
   }
 }
 
-/* Input Area */
+/* Input Area container */
 .input-area {
+  width: 100%;
   padding: 1rem;
   border-top: 1px solid #e0e0e0;
   background: white;
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-end;
 }
 
+/* Flex layout for form */
+.message-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Input expands */
 .message-input {
   flex: 1;
 }
@@ -247,17 +253,20 @@
   border-radius: 24px;
 }
 
+/* Send button fixed size */
 .send-button {
   width: 48px;
   height: 48px;
   flex-shrink: 0;
 }
 
+/* Gradient background for button */
 ::ng-deep .send-button.mat-fab {
   background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
   color: white;
 }
 
+/* Hover effect */
 ::ng-deep .send-button.mat-fab:hover:not([disabled]) {
   background: linear-gradient(135deg, #3949ab 0%, #1a237e 100%);
   transform: scale(1.05);

@@ -1,12 +1,29 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-require('dotenv').config();
+
+// Try to load .env, but fallback to manual setup if not available
+try {
+  require('dotenv').config();
+} catch (error) {
+  console.log('⚠️ .env file not found, using manual environment setup');
+  require('./create-env');
+}
+
+// Global error handlers to prevent silent crashes and surface stack traces
+process.on('uncaughtException', (err) => {
+  console.error('🛑 Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('🛑 Unhandled Rejection:', reason);
+});
 
 const connectDB = require('./config/database');
 const admissionRoutes = require('./routes/admissions');
-const chatbotRoutes = require('./routes/chatbot');
 const authRoutes = require('./routes/auth');
+const chatbotRoutes = require('./routes/chatbot');
+// Chatbot removed
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,8 +44,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/admissions', admissionRoutes);
-app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/chatbot', chatbotRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -39,14 +56,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Chatbot status endpoint (legacy - now handled by chatbot routes)
-app.get('/api/chatbot/status', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Chatbot service is ready and operational',
-    status: 'active'
-  });
-});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -70,5 +79,5 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
   console.log(`🎓 Admissions API: http://localhost:${PORT}/api/admissions`);
-  console.log(`🤖 Chatbot placeholder: http://localhost:${PORT}/api/chatbot/status`);
+  console.log(`🤖 Chatbot API: http://localhost:${PORT}/api/chatbot/health`);
 });
