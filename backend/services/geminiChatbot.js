@@ -36,7 +36,7 @@ function getStatus() {
     return {
         initialized: !!model,
         hasApiKey: !!(process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY),
-        mode: "Gemini 2.5 Flash (no RAG)",
+        mode: "Gemini 2.5 Flash",
     };
 }
 
